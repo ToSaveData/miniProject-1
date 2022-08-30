@@ -19,7 +19,7 @@ public:
 	string getAddress() const;
 	void setAddress(string&);
 	string getEmailAddress() const;
-	void setEamilAddress(string&);
+	void setEmailAddress(string&);
 
 private:
 	string m_name;

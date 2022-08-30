@@ -25,7 +25,7 @@ void Client::setAddress(string& address)
 }
 
 string Client::getEmailAddress() const { return m_emailAddress; }
-void Client::setEamilAddress(string& emailAddress)
+void Client::setEmailAddress(string& emailAddress)
 {
 	m_emailAddress = emailAddress;
 }
