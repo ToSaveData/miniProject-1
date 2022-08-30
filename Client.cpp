@@ -6,6 +6,12 @@ void Client::setName(string& name)
 	m_name = name;
 }
 
+string Client::getBirthday() const { return m_birthday; }
+void Client::setBirthday(string& birthday)
+{
+	m_birthday = birthday;
+}
+
 string Client::getPhoneNumber() const { return m_phoneNumber; }
 void Client::setPhoneNumber(string& phoneNumber)
 {

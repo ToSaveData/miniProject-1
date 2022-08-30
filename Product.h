@@ -8,14 +8,14 @@ class Product
 public:
 	Product(int ID= 0000, string productName= "", int productPrice= 0, string productSort= ""): 
 		m_ID(ID), m_productName(productName), m_productPrice(productPrice), m_productSort(productSort){ }
-	void setID();
-	string getID(string&) const;
-	void setProductName();
-	string getProductName(string&) const; 
-	void setProductPrice();
-	string getProductPrice(int&) const;
-	void setProductSort();
-	string getProductSort(string&) const;
+	void setID(int&);
+	int getID() const;
+	void setProductName(string&);
+	string getProductName() const;
+	void setProductPrice(int&);
+	int getProductPrice() const;
+	void setProductSort(string&);
+	string getProductSort() const;
 
 private:
 	int m_ID;

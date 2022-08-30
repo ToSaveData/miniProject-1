@@ -8,18 +8,22 @@ using namespace std;
 class Client
 {
 public:
-	Client(string name = "", string phoneNumber = "", string address = "", string emailAddress = "")
-		: m_name(name), m_phoneNumber(phoneNumber), m_address(address), m_emailAddress(emailAddress) {}
+	Client(string name = "", string birthday = "", string phoneNumber = "", string address = "", string emailAddress = "")
+		: m_name(name), m_birthday(birthday), m_phoneNumber(phoneNumber), m_address(address), m_emailAddress(emailAddress) {}
 	string getName() const;
 	void setName(string&); // 주소만 복사함으로써 메모리 사용을 줄이고 속도를 빠르게 하기 위함
+	string getBirthday() const;
+	void setBirthday(string&);
 	string getPhoneNumber() const;
 	void setPhoneNumber(string&);
 	string getAddress() const;
 	void setAddress(string&);
 	string getEmailAddress() const;
 	void setEamilAddress(string&);
+
 private:
 	string m_name;
+	string m_birthday;
 	string m_phoneNumber;
 	string m_address;
 	string m_emailAddress;
