@@ -24,7 +24,7 @@ public:
 private:
 	string m_name;
 	string m_birthday;
-	string m_phoneNumber;
+	string m_phoneNumber; //PK
 	string m_address;
 	string m_emailAddress;
 };

@@ -16,7 +16,7 @@ public:
 	int getOrderNumber();
 
 private:
-	string m_orderCode;
+	string m_orderCode; //PK
 	int m_orderDate;
 	int m_orderNumber;
 };

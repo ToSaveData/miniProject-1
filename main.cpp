@@ -3,7 +3,7 @@
 #include "OrderInfo.h"
 #include <vector>
 #include <algorithm>
-
+#include <string>
 int main()
 {
     int n;
@@ -35,24 +35,25 @@ int main()
                 {
                     case 1:
                     {
-                        cout << "이름: " << endl;
+                        cout << "이름: ";
                         cin >> s;
                         Client* CInfo1 = new Client;
                         CInfo1->setName(s);
                         s.clear();
-                        cout << "생년월일(ex.220830): " << endl;
+                        cout << "생년월일(ex.220830): ";
                         cin >> s;
                         CInfo1->setBirthday(s);
                         s.clear();
-                        cout << "전화번호(ex.010 1234 5678): " << endl;
+                        cout << "전화번호(ex.010-1234-5678): ";
                         cin >> s;
                         CInfo1->setPhoneNumber(s);
                         s.clear();
-                        cout << "주소(ex.서울시 종로구 혜화동): " << endl;
-                        cin >> s;
+                        cout << "주소(ex.서울시 종로구 혜화동): ";
+                        cin.ignore(); // 앞의 enter를 무시하는 경우
+                        getline(cin, s, '\n');
                         CInfo1->setAddress(s);
                         s.clear();
-                        cout << "이메일주소(ex.example@gmail.com): " << endl;
+                        cout << "이메일주소(ex.example@gmail.com): ";
                         cin >> s;
                         CInfo1->setEmailAddress(s);
                         s.clear();
@@ -62,8 +63,8 @@ int main()
                     {
                         for_each(ClientInfo.begin(), ClientInfo.end(), [](Client* C) {
                             cout << C->getName() << " : " << C->getBirthday() << " : " 
-                                << C->getPhoneNumber() << " : " << C->getAddress() << " : " 
-                                << C->getEmailAddress() << endl; });
+                            << C->getPhoneNumber() << " : " << C->getAddress() << " : " 
+                            << C->getEmailAddress() << endl; });
                     }break;
                 }
             }break;
@@ -72,8 +73,38 @@ int main()
             {
                 cout << "2) 입력 / 조회 / 삭제 / 변경" << endl;
                 cin >> n;
-            }break;
 
+                switch (n)
+                {
+                    case 1:
+                    {
+                        cout << "ID: ";
+                        cin >> s;
+                        Product* PInfo1 = new Product;
+                        PInfo1->setID(n);
+                        s.clear();
+                        cout << "제품명: ";
+                        cin >> s;
+                        PInfo1->setProductName(s);
+                        s.clear();
+                        cout << "제품 가격: ";
+                        cin >> s;
+                        PInfo1->setProductPrice(n);
+                        s.clear();
+                        cout << "제품 종류: ";
+                        cin >> s;
+                        PInfo1->setProductSort(s);
+                        s.clear();
+                        ProductInfo.push_back(PInfo1);
+                    }break;
+                case 2:
+                    {
+                        for_each(ProductInfo.begin(), ProductInfo.end(), [](Product* P) {
+                        cout << P->getID() << " : " << P->getProductName() << " : "
+                         << P->getProductPrice() << " : " << P->getProductSort() << endl; });
+                    }break;
+                }break;
+            }
             case 3:
             {
                 cout << "3) 주문 / 조회 / 취소" << endl;

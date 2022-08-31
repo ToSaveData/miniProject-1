@@ -18,7 +18,7 @@ public:
 	string getProductSort() const;
 
 private:
-	int m_ID;
+	int m_ID; //PK
 	string m_productName; //T1, T2 (CT 제품), N1 (포터블 X-ray), SNAP(구강 카메라), Scanner(스캐너)
 	int m_productPrice;
 	string m_productSort; //CT, X-ray, DentalCam, DentalScanner
