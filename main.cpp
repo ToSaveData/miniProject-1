@@ -87,8 +87,8 @@ int main()
                         {
                         case 0:
                             {
-                                    ClientInfo[n]->setName(s);
-                                    s.clear();
+                                ClientInfo[n]->setName(s);
+                                s.clear();
                             }break;
                         case 1:
                             {
@@ -147,7 +147,7 @@ int main()
                     {
                         for_each(ProductInfo.begin(), ProductInfo.end(), [](Product* P) {
                             cout << P->getProductID() << " : " << P->getProductName() << " : "
-                                << P->getProductPrice() << " : " << P->getProductSort() << endl; });
+                            << P->getProductPrice() << " : " << P->getProductSort() << endl; });
                     }break;
                 case 3:
                     {

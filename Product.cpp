@@ -2,9 +2,9 @@
 
 void Product::setProductID(int& ID)
 {
-	m_ID = ID;
+	m_productID = ID;
 }
-int Product::getProductID() const { return m_ID; }
+int Product::getProductID() const { return m_productID; }
 
 void Product::setProductName(string& ProductName)
 {
