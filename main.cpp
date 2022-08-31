@@ -6,7 +6,7 @@
 #include <string>
 int main()
 {
-    int n;
+    int n, m, x;
     string s;
     vector<Client*> ClientInfo;
     vector<Product*> ProductInfo;
@@ -21,15 +21,14 @@ int main()
     cout << endl;
     
     do {
-        cout << "몇번을 입력하시겠습니까 ? (종료: 0)" << endl;
+        cout << "몇번을 입력하시겠습니까 ? (종료: -1)" << endl;
         cin >> n;
 
         switch (n)
         {
             case 1:
             {
-                
-                cout << "1) 입력 / 조회 / 삭제 / 변경" << endl;
+                cout << "1) 1. 입력 / 2. 조회 / 3. 삭제 / 4. 변경" << endl;
                 cin >> n;
                 switch (n)
                 {
@@ -49,8 +48,8 @@ int main()
                         CInfo1->setPhoneNumber(s);
                         s.clear();
                         cout << "주소(ex.서울시 종로구 혜화동): ";
-                        cin.ignore(); // 앞의 enter를 무시하는 경우
-                        getline(cin, s, '\n');
+                        cin.ignore(); // 앞의 한 글자(enter)를 무시하는 경우
+                        getline(cin, s, '\n'); // '\n'가 들어올 때까지 받겠다
                         CInfo1->setAddress(s);
                         s.clear();
                         cout << "이메일주소(ex.example@gmail.com): ";
@@ -59,38 +58,85 @@ int main()
                         s.clear();
                         ClientInfo.push_back(CInfo1);
                     }break;
+
                     case 2:
                     {
                         for_each(ClientInfo.begin(), ClientInfo.end(), [](Client* C) {
-                            cout << C->getName() << " : " << C->getBirthday() << " : " 
-                            << C->getPhoneNumber() << " : " << C->getAddress() << " : " 
-                            << C->getEmailAddress() << endl; });
+                            cout << C->getName() << " : " << C->getBirthday() << " : "
+                                << C->getPhoneNumber() << " : " << C->getAddress() << " : "
+                                << C->getEmailAddress() << endl; });
                     }break;
-                }
+
+                    case 3:
+                    {
+                        cout << "삭제할 데이터 행을 입력하세요.";
+                        cin >> n;
+                        ClientInfo.erase(ClientInfo.begin() + n);
+                        cout << "삭제가 완료되었습니다." << endl;
+                    }break;
+
+                    case 4:
+                    {
+                        cout << "변경할 데이터 행을 입력하세요.";
+                        cin >> n;
+                        cout << "변경할 데이터 열을 입력하세요.";
+                        cin >> m;
+                        cout << "변경할 데이터 내용을 입력하세요.";
+                        cin >> s;
+                        switch (m)
+                        {
+                        case 0:
+                            {
+                                    ClientInfo[n]->setName(s);
+                                    s.clear();
+                            }break;
+                        case 1:
+                            {
+                                ClientInfo[n]->setBirthday(s);
+                                s.clear();
+                            }break;
+                        case 2:
+                            {
+                                ClientInfo[n]->setPhoneNumber(s);
+                                s.clear();
+                            }break;
+                        case 3:
+                            {
+                                ClientInfo[n]->setAddress(s);
+                                s.clear();
+                            }break;
+                        case 4:
+                            {
+                                ClientInfo[n]->setEmailAddress(s);
+                                s.clear();
+                            }break;
+                        }
+                        cout << "데이터 변경이 완료되었습니다." << endl;
+                        break;
+                    }break;
+                }break;
             }break;
 
             case 2:
             {
-                cout << "2) 입력 / 조회 / 삭제 / 변경" << endl;
+                cout << "2) 1. 입력 / 2. 조회 / 3. 삭제 / 4. 변경" << endl;
                 cin >> n;
 
                 switch (n)
                 {
-                    case 1:
+                case 1:
                     {
                         cout << "ID: ";
-                        cin >> s;
+                        cin >> x;
                         Product* PInfo1 = new Product;
-                        PInfo1->setID(n);
-                        s.clear();
+                        PInfo1->setProductID(x);
                         cout << "제품명: ";
                         cin >> s;
                         PInfo1->setProductName(s);
                         s.clear();
                         cout << "제품 가격: ";
-                        cin >> s;
-                        PInfo1->setProductPrice(n);
-                        s.clear();
+                        cin >> x;
+                        PInfo1->setProductPrice(x);
                         cout << "제품 종류: ";
                         cin >> s;
                         PInfo1->setProductSort(s);
@@ -100,18 +146,60 @@ int main()
                 case 2:
                     {
                         for_each(ProductInfo.begin(), ProductInfo.end(), [](Product* P) {
-                        cout << P->getID() << " : " << P->getProductName() << " : "
-                         << P->getProductPrice() << " : " << P->getProductSort() << endl; });
+                            cout << P->getProductID() << " : " << P->getProductName() << " : "
+                                << P->getProductPrice() << " : " << P->getProductSort() << endl; });
+                    }break;
+                case 3:
+                    {
+                        cout << "삭제할 데이터 행을 입력하세요.";
+                        cin >> n;
+                        ProductInfo.erase(ProductInfo.begin() + n);
+                        cout << "삭제가 완료되었습니다." << endl;
+                    }break;
+                case 4:
+                    {
+                        cout << "변경할 데이터 행을 입력하세요.";
+                        cin >> n;
+                        cout << "변경할 데이터 열을 입력하세요.";
+                        cin >> m;
+                        cout << "변경할 데이터 내용을 입력하세요.";
+                        switch (m)
+                        {
+                        case 0:
+                            {
+                                cin >> x;
+                                ProductInfo[n]->setProductID(x);
+                            }break;
+                        case 1:
+                            {
+                                cin >> s;
+                                ProductInfo[n]->setProductName(s);
+                                s.clear();
+                            }break;
+                        case 2:
+                            {
+                                cin >> x;
+                                ProductInfo[n]->setProductPrice(x);
+                            }break;
+                        case 3:
+                            {
+                                cin >> s;
+                                ProductInfo[n]->setProductSort(s);
+                                s.clear();
+                            }break;
+                            }
+                        cout << "데이터 변경이 완료되었습니다."<< endl;
+                        break;
                     }break;
                 }break;
             }
             case 3:
             {
-                cout << "3) 주문 / 조회 / 취소" << endl;
+                cout << "3) 1. 주문 / 2. 조회 / 3. 취소" << endl;
                 cin >> n;
             }break;
         }
-    } while (!(n == 0));
+    } while (!(n == -1));
         
     return 0;
 }

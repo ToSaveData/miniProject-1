@@ -1,10 +1,10 @@
 #include "Product.h"
 
-void Product::setID(int& ID)
+void Product::setProductID(int& ID)
 {
 	m_ID = ID;
 }
-int Product::getID() const { return m_ID; }
+int Product::getProductID() const { return m_ID; }
 
 void Product::setProductName(string& ProductName)
 {
