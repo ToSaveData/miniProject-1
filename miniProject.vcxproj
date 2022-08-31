@@ -140,14 +140,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ClientHandler.cpp" />
+    <ClCompile Include="main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="NEWmain.cpp" />
     <ClCompile Include="OrderInfo.cpp" />
+    <ClCompile Include="procudtHandler.cpp" />
     <ClCompile Include="Product.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
+    <ClInclude Include="clientHandler.h" />
     <ClInclude Include="OrderInfo.h" />
     <ClInclude Include="Product.h" />
+    <ClInclude Include="productHandler.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,6 @@
 #pragma once
 #ifndef _PRODUCT_H_
+#define _PRODUCT_H_
 #include <iostream>
 using namespace std;
 
@@ -16,6 +17,8 @@ public:
 	int getProductPrice() const;
 	void setProductSort(string&);
 	string getProductSort() const;
+	bool operator==(int productID) const;
+
 
 private:
 	int m_productID; //PK

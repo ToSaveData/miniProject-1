@@ -1,5 +1,6 @@
 #pragma once
 #ifndef _ORDERINFO_H_
+#define _ORDERINFO_H_
 #include <iostream>
 using namespace std;
 

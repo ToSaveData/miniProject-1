@@ -23,3 +23,8 @@ void Product::setProductSort(string& productSort)
 	m_productSort = productSort;
 }
 string Product::getProductSort() const { return m_productSort; }
+
+bool Product::operator==(int productID) const
+{
+	return (this->m_productID == productID);
+}

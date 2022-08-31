@@ -20,6 +20,8 @@ public:
 	void setAddress(string&);
 	string getEmailAddress() const;
 	void setEmailAddress(string&);
+	bool operator==(string phoneNumber) const;
+
 
 private:
 	string m_name;

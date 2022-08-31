@@ -29,3 +29,8 @@ void Client::setEmailAddress(string& emailAddress)
 {
 	m_emailAddress = emailAddress;
 }
+
+bool Client::operator==(string phoneNumber) const
+{
+	return (this->m_phoneNumber == phoneNumber);
+}

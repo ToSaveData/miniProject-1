@@ -1,0 +1,21 @@
+#pragma once
+#ifndef _CLIENTHANDLER_H_
+#define _CLIENTHANDLER_H_
+#include "Client.h"
+#include <vector>
+
+class clientHandler 
+{
+public:
+	void ClientEnroll(Client*);
+	void ClientSearch(string&);
+	void ClientShowlist();
+	void ClientRemove();
+	void ClientEdit(vector<Client*>);
+
+
+private:
+	vector<Client*> ClientInfo;
+};
+
+#endif // !_CLIENTHANDLER_H_
