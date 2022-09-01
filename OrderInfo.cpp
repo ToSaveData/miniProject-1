@@ -18,3 +18,9 @@ void OrderInfo::setOrderNumber(int& ordernumber)
 	m_orderNumber = ordernumber;
 }
 int OrderInfo::getOrderNumber() { return m_orderNumber; }
+
+void OrderInfo::setTotalPrice(int& totalPrice)
+{
+	m_totalPrice = totalPrice;
+}
+int OrderInfo::getTotalPrice() { return m_totalPrice; }

@@ -145,6 +145,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="NEWmain.cpp" />
+    <ClCompile Include="orderHandler.cpp" />
     <ClCompile Include="OrderInfo.cpp" />
     <ClCompile Include="procudtHandler.cpp" />
     <ClCompile Include="Product.cpp" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="clientHandler.h" />
+    <ClInclude Include="orderHandler.h" />
     <ClInclude Include="OrderInfo.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="productHandler.h" />
