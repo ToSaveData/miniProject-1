@@ -1,9 +1,8 @@
 #include "clientHandler.h"
 
-void clientHandler::ClientEnroll(Client* C)
+void clientHandler::ClientEnroll()
 {
     string s;
-    C = new Client;
     cout << "이름: ";
     cin >> s;
     Client* CInfo1 = new Client;
@@ -35,8 +34,8 @@ void clientHandler::ClientSearch(string &phoneNumber)
     
     if (it != ClientInfo.end())
     {
-        cout << (*it)->getName() << " : " << (*it)->getBirthday() << " : " << (*it)->getPhoneNumber()
-            << " : " << (*it)->getAddress() << " : " << (*it)->getEmailAddress() << endl;
+        cout << "이름: " << (*it)->getName() << ", 생년월일: " << (*it)->getBirthday() << ", 전화번호: " << (*it)->getPhoneNumber()
+            << ", 주소: " << (*it)->getAddress() << ", 이메일 주소: " << (*it)->getEmailAddress() << endl;
     }
     else
         cout << "일치하는 데이터가 없습니다." << endl;
@@ -65,11 +64,10 @@ void clientHandler::ClientRemove()
     }
 }
 
-void clientHandler::ClientEdit(vector<Client*>)
+void clientHandler::ClientEdit()
 {
     int m, n;
     string s;
-
     cout << "변경할 데이터 행을 입력하세요.";
     cin >> n;
     cout << "변경할 데이터 열을 입력하세요.";

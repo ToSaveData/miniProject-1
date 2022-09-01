@@ -7,11 +7,11 @@
 class productHandler
 {
 public:
-	void productEnroll(Product*);
+	void productEnroll();
 	void productSearch(int&);
 	void productShowlist();
 	void productRemove();
-	void productEdit(vector<Product*>);
+	void productEdit();
 private:
 	vector<Product*> ProductInfo;
 };

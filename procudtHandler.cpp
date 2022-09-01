@@ -1,11 +1,11 @@
 #include "productHandler.h"
 
-void productHandler::productEnroll(Product*)
+void productHandler::productEnroll()
 {
     int x;
     string s;
 
-    cout << "productID: ";
+    cout << "力前I D: ";
     cin >> x;
     Product* PInfo1 = new Product;
     PInfo1->setProductID(x);
@@ -30,8 +30,8 @@ void productHandler::productSearch(int &productID)
 
     if (it != ProductInfo.end())
     {
-        cout << (*it)->getProductID() << " : " << (*it)->getProductName() << " : " << (*it)->getProductPrice()
-            << " : " << (*it)->getProductSort() << endl;
+        cout << "力前 ID: " << (*it)->getProductID() << ", 力前疙: " << (*it)->getProductName() << ", 力前 啊拜: " 
+            << (*it)->getProductPrice() << ", 力前 辆幅: " << (*it)->getProductSort() << endl;
     }
     else
         cout << "老摹窍绰 单捞磐啊 绝嚼聪促." << endl;
@@ -40,7 +40,7 @@ void productHandler::productShowlist()
 {
     for (auto P : ProductInfo)
     {
-        cout << "力前ID: " << P->getProductID() << ", 力前疙: " << P->getProductName() << ", 力前 啊拜: "
+        cout << "力前 ID: " << P->getProductID() << ", 力前疙: " << P->getProductName() << ", 力前 啊拜: "
         << P->getProductPrice() << ", 力前 辆幅: " << P->getProductSort() << endl;
     }
 }
@@ -58,7 +58,7 @@ void productHandler::productRemove()
     }
 }
 
-void productHandler::productEdit(vector<Product*>)
+void productHandler::productEdit()
 {
     int n, m, x;
     string s;

@@ -7,11 +7,11 @@
 class clientHandler 
 {
 public:
-	void ClientEnroll(Client*);
+	void ClientEnroll();
 	void ClientSearch(string&);
 	void ClientShowlist();
 	void ClientRemove();
-	void ClientEdit(vector<Client*>);
+	void ClientEdit();
 
 
 private:
