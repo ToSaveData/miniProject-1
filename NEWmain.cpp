@@ -11,10 +11,11 @@ int main()
 {
 	int n = 0, m = 0, x = 0;
 	string s="";
-	start();
+
 	clientHandler CH;
 	productHandler PH;
 	do {
+		start();
 		firstQuestion(n);
 		switch (n)
 		{
@@ -31,7 +32,10 @@ int main()
 
 			}break;
 		}
-	} while (1);
+		cout << "계속 하시겠습니까? 그만두려면 -1을 입력하십시오.";
+		cin >> n;
+		cout << endl;
+	} while (!(n==-1));
 
 	
 	return 0;

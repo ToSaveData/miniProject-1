@@ -24,3 +24,13 @@ void OrderInfo::setTotalPrice(int& totalPrice)
 	m_totalPrice = totalPrice;
 }
 int OrderInfo::getTotalPrice() { return m_totalPrice; }
+
+void OrderInfo::getCID(clientHandler& ClientInfo, string &phoneNumber)
+{
+	ClientInfo.ClientSearch(phoneNumber);
+}
+
+void OrderInfo::getPID(productHandler& ProductInfo, int &productID)
+{
+	ProductInfo.productSearch(productID);
+}
