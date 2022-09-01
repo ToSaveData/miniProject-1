@@ -1,7 +1,7 @@
 #ifndef _UI_H_
 #define _UI_H_
 
-#include "OrderInfo.h"
+#include "orderInfoHandler.h"
 #include "clientHandler.h"
 #include "productHandler.h"
 #include "Client.h"
@@ -26,7 +26,7 @@ void firstQuestion(int &n)
 	//int n;
 	do 
 	{
-		cout << "번호를 입력하세요. (종료 -1)" << endl;
+		cout << "번호를 입력하세요. (종료: -1)" << endl;
 		cin >> n;
 
 		if (n > 3 || n < -1 || n == 0)
@@ -58,7 +58,7 @@ void ClientQ(clientHandler& CH)
 		}break;
 	case 3:
 		{
-		cout << "찾는 사람의 전화번호를 입력해주세요(010-xxxx-xxxx). ";
+		cout << "찾는 사람의 전화번호를 입력하세요(010-xxxx-xxxx). ";
 		cin >> s;
 		CH.ClientSearch(s);
 		}break;
@@ -78,7 +78,7 @@ void ProductQ(productHandler& PH)
 	int x = 0,m = 0;
 	string s = "";
 
-	cout << "1) 1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 / 4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
+	cout << "2) 1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 / 4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
 	cin >> m;
 
 	switch (m)
@@ -93,7 +93,7 @@ void ProductQ(productHandler& PH)
 		}break;
 	case 3:
 		{
-			cout << "찾는 제품의 ID를 입력해주세요. ";
+			cout << "찾는 제품의 ID를 입력하세요. ";
 			cin >> x;
 			PH.productSearch(x);
 		}break;
@@ -107,6 +107,44 @@ void ProductQ(productHandler& PH)
 		}break;
 	}
 }
+
+void OrderInfoQ(orderInfoHandler& OH)
+{
+	int x = 0, m = 0;
+	string s = "";
+
+	cout << "3) 1. 주문 정보 등록 / 2. 주문 목록 조회 / 3. 주문 정보 검색 / 4. 주문 정보 삭제 / 5. 주문 정보 변경" << endl;
+	cin >> m;
+
+	switch (m)
+	{
+	case 1:
+	{
+		OH.OrderInfoEnroll();
+	}break;
+	case 2:
+	{
+		OH.OrderInfoShowlist();
+	}break;
+	case 3:
+	{
+		cout << "찾는 제품의 ID를 입력하세요. ";
+		cin >> s;
+		OH.OrderInfoSearch(s);
+	}break;
+	case 4:
+	{
+		OH.OrderInfoRemove();
+	}break;
+	case 5:
+	{
+		OH.OrderInfoEdit();
+	}break;
+	}
+}
+
+
+//cout << "3) 1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 / 4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
 
 #endif // !_UI_H_
 

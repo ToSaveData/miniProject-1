@@ -7,9 +7,9 @@
 class orderInfoHandler
 {
 public:
-	void OrderInfoEnroll(clientHandler, productHandler);
-	void OrderInfoSearch(int&);
-	void OrderInfoShowlist(clientHandler, productHandler);
+	void OrderInfoEnroll();
+	void OrderInfoSearch(string&);
+	void OrderInfoShowlist();
 	void OrderInfoRemove();
 	void OrderInfoEdit();
 	

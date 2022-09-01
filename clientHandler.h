@@ -13,7 +13,6 @@ public:
 	void ClientRemove();
 	void ClientEdit();
 
-
 private:
 	vector<Client*> ClientInfo;
 };

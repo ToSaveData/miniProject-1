@@ -5,7 +5,7 @@ void productHandler::productEnroll()
     int x;
     string s;
 
-    cout << "力前I D: ";
+    cout << "力前 ID: ";
     cin >> x;
     Product* PInfo1 = new Product;
     PInfo1->setProductID(x);

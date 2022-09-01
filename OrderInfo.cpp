@@ -19,18 +19,19 @@ void OrderInfo::setOrderNumber(int& ordernumber)
 }
 int OrderInfo::getOrderNumber() { return m_orderNumber; }
 
-void OrderInfo::setTotalPrice(int& totalPrice)
+void OrderInfo::setCID(string& phoneNumber)
 {
-	m_totalPrice = totalPrice;
+	m_CID = phoneNumber;
 }
-int OrderInfo::getTotalPrice() { return m_totalPrice; }
+string OrderInfo::getCID() { return m_CID; }
 
-void OrderInfo::getCID(clientHandler& ClientInfo, string &phoneNumber)
+void OrderInfo::setPID(int& productID)
 {
-	ClientInfo.ClientSearch(phoneNumber);
+	m_PID = productID;
 }
+int OrderInfo::getPID() { return m_PID; }
 
-void OrderInfo::getPID(productHandler& ProductInfo, int &productID)
+bool OrderInfo::operator==(string ordercode) const
 {
-	ProductInfo.productSearch(productID);
+	return (this->m_orderCode == ordercode);
 }

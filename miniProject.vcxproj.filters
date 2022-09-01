@@ -59,7 +59,7 @@
     <ClInclude Include="UI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="orderHandler.h">
+    <ClInclude Include="orderInfoHandler.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

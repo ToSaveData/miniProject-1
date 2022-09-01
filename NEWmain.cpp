@@ -3,6 +3,7 @@
 #include "OrderInfo.h"
 #include "clientHandler.h"
 #include "productHandler.h"
+#include "orderInfoHandler.h"
 #include "UI.h"
 #include <algorithm>
 #include <string>
@@ -14,6 +15,7 @@ int main()
 
 	clientHandler CH;
 	productHandler PH;
+	orderInfoHandler OH;
 	do {
 		start();
 		firstQuestion(n);
@@ -29,12 +31,12 @@ int main()
 			}break;
 		case 3:
 			{
-
+				OrderInfoQ(OH);
 			}break;
 		}
-		cout << "계속 하시겠습니까? 그만두려면 -1을 입력하십시오.";
+		cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
 		cin >> n;
-		cout << endl;
+		system("cls");
 	} while (!(n==-1));
 
 	
