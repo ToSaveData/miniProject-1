@@ -27,6 +27,7 @@ void clientHandler::ClientEnroll()
     ClientInfo.push_back(CInfo1);
 }
 
+
 void clientHandler::ClientSearch(string &phoneNumber)
 {
     auto it = find_if(ClientInfo.begin(), ClientInfo.end(), [=](Client* c) 
@@ -34,8 +35,10 @@ void clientHandler::ClientSearch(string &phoneNumber)
     
     if (it != ClientInfo.end())
     {
-        cout << "이름: " << (*it)->getName() << ", 생년월일: " << (*it)->getBirthday() << ", 전화번호: " << (*it)->getPhoneNumber()
-            << ", 주소: " << (*it)->getAddress() << ", 이메일 주소: " << (*it)->getEmailAddress() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "이름: " << (*it)->getName() << " / 생년월일: " << (*it)->getBirthday() << " / 전화번호: " << (*it)->getPhoneNumber()
+            << endl << "주소: " << (*it)->getAddress() << " / 이메일 주소: " << (*it)->getEmailAddress() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
     }
     else
         cout << "일치하는 데이터가 없습니다." << endl;
@@ -45,8 +48,10 @@ void clientHandler::ClientShowlist()
 {
     for (auto C : ClientInfo)
     {
-        cout << "이름: " << C->getName() << ", 생년월일: " << C->getBirthday() << ", 전화번호: " << C->getPhoneNumber()
-        << ", 주소: " << C->getAddress() << ", 이메일 주소: " << C->getEmailAddress() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "이름: " << C->getName() << " / 생년월일: " << C->getBirthday() << " / 전화번호: " << C->getPhoneNumber()
+        << endl << "주소: " << C->getAddress() << " / 이메일 주소: " << C->getEmailAddress() <<  endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
     }
 }
 
@@ -103,4 +108,17 @@ void clientHandler::ClientEdit()
         }break;
     }
     cout << "데이터 변경이 완료되었습니다." << endl;
+}
+
+Client* clientHandler::ClientInforeturn(string& phoneNumber)
+{
+    Client* c = nullptr;
+    auto it = find_if(ClientInfo.begin(), ClientInfo.end(), [=](Client* c)
+        { return (*c).getPhoneNumber() == phoneNumber; });
+    if (it != ClientInfo.end())
+    {
+        c = *it;
+        return *it;
+    }
+    
 }

@@ -30,8 +30,10 @@ void productHandler::productSearch(int &productID)
 
     if (it != ProductInfo.end())
     {
-        cout << "제품 ID: " << (*it)->getProductID() << ", 제품명: " << (*it)->getProductName() << ", 제품 가격: " 
-            << (*it)->getProductPrice() << ", 제품 종류: " << (*it)->getProductSort() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "제품 ID: " << (*it)->getProductID() << " / 제품명: " << (*it)->getProductName() << " / 제품 가격: " 
+            << (*it)->getProductPrice() << endl << "제품 종류: " << (*it)->getProductSort() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
     }
     else
         cout << "일치하는 데이터가 없습니다." << endl;
@@ -40,8 +42,10 @@ void productHandler::productShowlist()
 {
     for (auto P : ProductInfo)
     {
-        cout << "제품 ID: " << P->getProductID() << ", 제품명: " << P->getProductName() << ", 제품 가격: "
-        << P->getProductPrice() << ", 제품 종류: " << P->getProductSort() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "제품 ID: " << P->getProductID() << " / 제품명: " << P->getProductName() << " / 제품 가격: "
+        << P->getProductPrice() << endl << "제품 종류: " << P->getProductSort() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
     }
 }
 void productHandler::productRemove()
@@ -94,4 +98,13 @@ void productHandler::productEdit()
     }break;
     }
     cout << "데이터 변경이 완료되었습니다." << endl;
+}
+
+Product* productHandler::ProductInfoReturn(int& productID)
+{
+    auto it = find_if(ProductInfo.begin(), ProductInfo.end(), [=](Product *p)
+        { return (*p).getProductID() == productID; });
+    
+    if (it != ProductInfo.end()) 
+        return *it; 
 }

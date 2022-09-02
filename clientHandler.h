@@ -12,6 +12,7 @@ public:
 	void ClientShowlist();
 	void ClientRemove();
 	void ClientEdit();
+	Client* ClientInforeturn(string&);
 
 private:
 	vector<Client*> ClientInfo;

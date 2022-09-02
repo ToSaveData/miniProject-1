@@ -26,15 +26,18 @@ void orderInfoHandler::OrderInfoEnroll()
     OrderInfoInfo.push_back(OrderInfoInfo1);
 }
 
-void orderInfoHandler::OrderInfoSearch(string& ordercode)
+void orderInfoHandler::OrderInfoSearchShow(string& ordercode, clientHandler& CH, productHandler &PH)
 {
     auto it = find_if(OrderInfoInfo.begin(), OrderInfoInfo.end(), [=](OrderInfo* O)
         { return (*O).getOrderCode() == ordercode; });
 
     if (it != OrderInfoInfo.end())
     {
-        cout << "주문코드: " << (*it)->getOrderCode() << ", 주문일자: " << (*it)->getOrderDate() << ", 주문수량: "
-            << (*it)->getOrderNumber() << ", CID: " << (*it)->getCID() << ", PID: " << (*it)->getPID() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "주문코드: " << (*it)->getOrderCode() << " / 주문일자: " << (*it)->getOrderDate() << " / 주문수량: "
+            << (*it)->getOrderNumber() << endl << "제품 가격: " << getPPrice((*it)->getPID(), PH) << " / 총 가격: " 
+            << (getPPrice((*it)->getPID(), PH)) * ((*it)->getOrderNumber()) << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
     }
     else
         cout << "일치하는 데이터가 없습니다." << endl;
@@ -44,8 +47,10 @@ void orderInfoHandler::OrderInfoShowlist()
 {
     for (auto O : OrderInfoInfo)
     {
-        cout << "주문코드: " << O->getOrderCode() << ", 주문일자: " << O->getOrderDate() << ", 주문수량: "
-            << O->getOrderNumber() << ", CID: " << O->getCID() << ", PID: " << O->getPID() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "주문코드: " << O->getOrderCode() << " / 주문일자: " << O->getOrderDate() << " / 주문수량: "
+            << O->getOrderNumber() << endl << "CID: " << O->getCID() << " / PID: " << O->getPID() << endl;
+        cout << "──────────────────────────────────────────────────────────" << endl;
     }
 }
 
@@ -106,4 +111,28 @@ void orderInfoHandler::OrderInfoEdit()
     }break;
     }
     cout << "데이터 변경이 완료되었습니다." << endl;
+}
+
+string orderInfoHandler::getCName(string phoneNumber, clientHandler& CH)
+{
+    string Cname = CInfo.ClientInforeturn(phoneNumber)->getName();
+    return Cname;
+}
+
+string orderInfoHandler::getCAddress(string phoneNumber, clientHandler& CH)
+{
+    string Adress = CInfo.ClientInforeturn(phoneNumber)->getAddress();
+    return Adress;
+}
+
+string orderInfoHandler::getPName(int productID, productHandler &PH)
+{
+    string Pname = PInfo.ProductInfoReturn(productID)->getProductName();
+    return Pname;
+}
+
+int orderInfoHandler::getPPrice(int productID, productHandler& PH)
+{
+   int price = PInfo.ProductInfoReturn(productID)->getProductPrice();
+   return price;
 }

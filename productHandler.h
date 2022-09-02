@@ -12,6 +12,8 @@ public:
 	void productShowlist();
 	void productRemove();
 	void productEdit();
+	Product* ProductInfoReturn(int&);
+
 private:
 	vector<Product*> ProductInfo;
 };
