@@ -1,9 +1,9 @@
 #ifndef _UI_H_
 #define _UI_H_
 
-#include "orderInfoHandler.h"
-#include "clientHandler.h"
-#include "productHandler.h"
+#include "OrderInfoHandler.h"
+#include "ClientHandler.h"
+#include "ProductHandler.h"
 #include "Client.h"
 #include "Product.h"
 #include "OrderInfo.h"
@@ -43,19 +43,21 @@ void firstQuestion(int &n)
 	} while (!(n ==- 1));
 }
 
-void ClientQ(clientHandler& CH)
+void ClientQ(ClientHandler& CH)
 {
-	int m=0;
+	int m = 0;
 	string s="";	
 	
-	cout << "──────────────────────────────────────────────────────────" << endl;
+	cout << "───────────────────────────────────────────────────────────────" << endl;
 	cout << "1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 " << endl;
 	cout << "4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
-	cout << "──────────────────────────────────────────────────────────" << endl;
+	cout << "───────────────────────────────────────────────────────────────" << endl;
 	cin >> m;
 	
 	switch (m)
 	{
+	case 0:
+	{}
 	case 1: 
 		{
 		CH.ClientEnroll();
@@ -81,14 +83,14 @@ void ClientQ(clientHandler& CH)
 	}
 }
 
-void ProductQ(productHandler& PH)
+void ProductQ(ProductHandler& PH)
 {
 	int x = 0,m = 0;
 	string s = "";
-	cout << "──────────────────────────────────────────────────────────" << endl;
+	cout << "───────────────────────────────────────────────────────────────" << endl;
 	cout << "1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 " << endl;
 	cout << "4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
-	cout << "──────────────────────────────────────────────────────────" << endl;
+	cout << "───────────────────────────────────────────────────────────────" << endl;
 	cin >> m;
 
 	switch (m)
@@ -118,15 +120,15 @@ void ProductQ(productHandler& PH)
 	}
 }
 
-void OrderInfoQ(clientHandler& CH, productHandler& PH, orderInfoHandler& OH1)
+void OrderInfoQ(ClientHandler& CH, ProductHandler& PH, OrderInfoHandler& OH1)
 {
 	int x = 0, m = 0;
 	string s = "";
 
-	cout << "──────────────────────────────────────────────────────────" << endl;
+	cout << "───────────────────────────────────────────────────────────────" << endl;
 	cout << "1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 " << endl;
 	cout << "4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
-	cout << "──────────────────────────────────────────────────────────" << endl;
+	cout << "───────────────────────────────────────────────────────────────" << endl;
 	cin >> m;
 
 	switch (m)
@@ -137,7 +139,7 @@ void OrderInfoQ(clientHandler& CH, productHandler& PH, orderInfoHandler& OH1)
 	}break;
 	case 2:
 	{
-		OH1.OrderInfoShowlist();
+		OH1.OrderInfoShowlist(PH);
 	}break;
 	case 3:
 	{

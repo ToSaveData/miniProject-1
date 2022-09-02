@@ -1,14 +1,12 @@
-#include "productHandler.h"
+#include "ProductHandler.h"
 
-void productHandler::productEnroll()
+void ProductHandler::productEnroll()
 {
     int x;
     string s;
-
-    cout << "제품 ID: ";
-    cin >> x;
     Product* PInfo1 = new Product;
-    PInfo1->setProductID(x);
+    int productID = makeProductID();
+    PInfo1->setProductID(productID);
     cout << "제품명: ";
     cin >> s;
     PInfo1->setProductName(s);
@@ -23,32 +21,32 @@ void productHandler::productEnroll()
     ProductInfo.push_back(PInfo1);
 }
 
-void productHandler::productSearch(int &productID)
+void ProductHandler::productSearch(int &productID)
 {
     auto it = find_if(ProductInfo.begin(), ProductInfo.end(), [=](Product* p)
         { return (*p).getProductID() == productID; });
 
     if (it != ProductInfo.end())
     {
-        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "───────────────────────────────────────────────────────────────" << endl;
         cout << "제품 ID: " << (*it)->getProductID() << " / 제품명: " << (*it)->getProductName() << " / 제품 가격: " 
             << (*it)->getProductPrice() << endl << "제품 종류: " << (*it)->getProductSort() << endl;
-        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "───────────────────────────────────────────────────────────────" << endl;
     }
     else
         cout << "일치하는 데이터가 없습니다." << endl;
 }
-void productHandler::productShowlist()
+void ProductHandler::productShowlist()
 {
     for (auto P : ProductInfo)
     {
-        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "───────────────────────────────────────────────────────────────" << endl;
         cout << "제품 ID: " << P->getProductID() << " / 제품명: " << P->getProductName() << " / 제품 가격: "
         << P->getProductPrice() << endl << "제품 종류: " << P->getProductSort() << endl;
-        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "───────────────────────────────────────────────────────────────" << endl;
     }
 }
-void productHandler::productRemove()
+void ProductHandler::productRemove()
 {
     int n;
     cout << "삭제할 데이터 행을 입력하세요.";
@@ -62,23 +60,20 @@ void productHandler::productRemove()
     }
 }
 
-void productHandler::productEdit()
+void ProductHandler::productEdit()
 {
     int n, m, x;
     string s;
-
+    cout << "───────────────────────────────────────────────────────────────" << endl;
     cout << "변경할 데이터 행을 입력하세요.";
     cin >> n;
+    cout << "───────────────────────────────────────────────────────────────" << endl;
     cout << "변경할 데이터 열을 입력하세요.";
     cin >> m;
+    cout << "───────────────────────────────────────────────────────────────" << endl;
     cout << "변경할 데이터 내용을 입력하세요.";
     switch (m)
     {
-    case 0:
-    {
-        cin >> x;
-        ProductInfo[n]->setProductID(x);
-    }break;
     case 1:
     {
         cin >> s;
@@ -97,14 +92,28 @@ void productHandler::productEdit()
         s.clear();
     }break;
     }
+    cout << "───────────────────────────────────────────────────────────────" << endl;
     cout << "데이터 변경이 완료되었습니다." << endl;
+    cout << "───────────────────────────────────────────────────────────────" << endl;
 }
 
-Product* productHandler::ProductInfoReturn(int& productID)
+Product* ProductHandler::ProductInfoReturn(int& productID)
 {
     auto it = find_if(ProductInfo.begin(), ProductInfo.end(), [=](Product *p)
         { return (*p).getProductID() == productID; });
     
     if (it != ProductInfo.end()) 
-        return *it; 
+        return *it;
+}
+
+int ProductHandler::makeProductID()
+{
+
+    if (ProductInfo.size() == 0)
+        return 1000;
+    else if(ProductInfo.size() > 0)
+    {
+        int i = (*ProductInfo.rbegin())->getProductID();
+        return ++i;
+    }
 }

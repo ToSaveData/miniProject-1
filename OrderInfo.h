@@ -4,8 +4,6 @@
 
 #include "Client.h"
 #include "Product.h"
-#include "clientHandler.h"
-#include "productHandler.h"
 #include <iostream>
 using namespace std;
 

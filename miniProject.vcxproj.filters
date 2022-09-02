@@ -33,10 +33,10 @@
     <ClCompile Include="ClientHandler.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="procudtHandler.cpp">
+    <ClCompile Include="ProcudtHandler.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="orderHandler.cpp">
+    <ClCompile Include="OrderHandler.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,16 +50,16 @@
     <ClInclude Include="OrderInfo.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="clientHandler.h">
+    <ClInclude Include="ClientHandler.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="productHandler.h">
+    <ClInclude Include="ProductHandler.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="orderInfoHandler.h">
+    <ClInclude Include="OrderInfoHandler.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

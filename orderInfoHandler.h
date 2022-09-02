@@ -2,30 +2,31 @@
 #ifndef _ORDERINFOHANDLER_H_
 #define _ORDERINFOHANDLER_H_
 #include "OrderInfo.h"
-#include "clientHandler.h"
-#include "productHandler.h"
+#include "ClientHandler.h"
+#include "ProductHandler.h"
 #include <vector>
 
-class orderInfoHandler
+
+class OrderInfoHandler
 {
 public:
-	orderInfoHandler(clientHandler& CH, productHandler& PH) :
+	OrderInfoHandler(ClientHandler& CH, ProductHandler& PH) :
 		CInfo(CH), PInfo(PH) {}
 	void OrderInfoEnroll();
-	void OrderInfoSearchShow(string&, clientHandler&, productHandler&);
-	void OrderInfoShowlist();
+	void OrderInfoSearchShow(string&, ClientHandler&, ProductHandler&);
+	void OrderInfoShowlist(ProductHandler&);
 	void OrderInfoRemove();
 	void OrderInfoEdit();
-	string getCName(string, clientHandler&);
-	string getCAddress(string, clientHandler&);
-	string getPName(int, productHandler&);
-	int getPPrice(int, productHandler&);
+	string getCName(string, ClientHandler&);
+	string getCAddress(string, ClientHandler&);
+	string getPName(int, ProductHandler&);
+	int getPPrice(int, ProductHandler&);
 	
 
 private:
 	vector<OrderInfo*> OrderInfoInfo;
-	clientHandler &CInfo;
-	productHandler &PInfo;
+	ClientHandler &CInfo;
+	ProductHandler &PInfo;
 };
 
 #endif // !_ORDERINFOHANDLER_H_

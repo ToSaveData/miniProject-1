@@ -4,7 +4,8 @@
 #include "Product.h"
 #include <vector>
 
-class productHandler
+
+class ProductHandler
 {
 public:
 	void productEnroll();
@@ -13,6 +14,7 @@ public:
 	void productRemove();
 	void productEdit();
 	Product* ProductInfoReturn(int&);
+	int makeProductID();
 
 private:
 	vector<Product*> ProductInfo;

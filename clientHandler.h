@@ -4,7 +4,7 @@
 #include "Client.h"
 #include <vector>
 
-class clientHandler 
+class ClientHandler
 {
 public:
 	void ClientEnroll();

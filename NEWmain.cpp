@@ -1,9 +1,9 @@
 #include "Client.h"
 #include "Product.h"
 #include "OrderInfo.h"
-#include "clientHandler.h"
-#include "productHandler.h"
-#include "orderInfoHandler.h"
+#include "ClientHandler.h"
+#include "ProductHandler.h"
+#include "OrderInfoHandler.h"
 #include "UI.h"
 #include <algorithm>
 #include <string>
@@ -12,9 +12,9 @@ int main()
 {
 	int n = 0, m = 0, x = 0;
 	string s="";
-	clientHandler CH;
-	productHandler PH;
-	orderInfoHandler OH(CH, PH);
+	ClientHandler CH;
+	ProductHandler PH;
+	OrderInfoHandler OH(CH, PH);
 	
 TO:	do {
 		start();
@@ -37,10 +37,12 @@ TO:	do {
 		}
 
 		catch(...){
+			cout << "───────────────────────────────────────────────────────────────" << endl;
 			cout << "잘못된 입력입니다." << endl;
+			cout << "───────────────────────────────────────────────────────────────" << endl;
 			break;
 		}
-
+		cout << "───────────────────────────────────────────────────────────────" << endl;
 		cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
 		cin >> n;
 		system("cls");

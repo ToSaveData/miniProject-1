@@ -1,6 +1,6 @@
-#include "clientHandler.h"
+#include "ClientHandler.h"
 
-void clientHandler::ClientEnroll()
+void ClientHandler::ClientEnroll()
 {
     string s;
     cout << "이름: ";
@@ -28,34 +28,34 @@ void clientHandler::ClientEnroll()
 }
 
 
-void clientHandler::ClientSearch(string &phoneNumber)
+void ClientHandler::ClientSearch(string &phoneNumber)
 {
     auto it = find_if(ClientInfo.begin(), ClientInfo.end(), [=](Client* c) 
         { return (*c).getPhoneNumber() == phoneNumber; });
     
     if (it != ClientInfo.end())
     {
-        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "───────────────────────────────────────────────────────────────" << endl;
         cout << "이름: " << (*it)->getName() << " / 생년월일: " << (*it)->getBirthday() << " / 전화번호: " << (*it)->getPhoneNumber()
             << endl << "주소: " << (*it)->getAddress() << " / 이메일 주소: " << (*it)->getEmailAddress() << endl;
-        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "───────────────────────────────────────────────────────────────" << endl;
     }
     else
         cout << "일치하는 데이터가 없습니다." << endl;
 }
 
-void clientHandler::ClientShowlist()
+void ClientHandler::ClientShowlist()
 {
     for (auto C : ClientInfo)
     {
-        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "───────────────────────────────────────────────────────────────" << endl;
         cout << "이름: " << C->getName() << " / 생년월일: " << C->getBirthday() << " / 전화번호: " << C->getPhoneNumber()
         << endl << "주소: " << C->getAddress() << " / 이메일 주소: " << C->getEmailAddress() <<  endl;
-        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "───────────────────────────────────────────────────────────────" << endl;
     }
 }
 
-void clientHandler::ClientRemove()
+void ClientHandler::ClientRemove()
 {
     int n;
     cout << "삭제할 데이터 행을 입력하세요.";
@@ -69,14 +69,17 @@ void clientHandler::ClientRemove()
     }
 }
 
-void clientHandler::ClientEdit()
+void ClientHandler::ClientEdit()
 {
     int m, n;
     string s;
+    cout << "───────────────────────────────────────────────────────────────" << endl;
     cout << "변경할 데이터 행을 입력하세요.";
     cin >> n;
+    cout << "───────────────────────────────────────────────────────────────" << endl;
     cout << "변경할 데이터 열을 입력하세요.";
     cin >> m;
+    cout << "───────────────────────────────────────────────────────────────" << endl;
     cout << "변경할 데이터 내용을 입력하세요.";
     cin >> s;
     switch (m)
@@ -107,10 +110,12 @@ void clientHandler::ClientEdit()
             s.clear();
         }break;
     }
+    cout << "───────────────────────────────────────────────────────────────" << endl;
     cout << "데이터 변경이 완료되었습니다." << endl;
+    cout << "───────────────────────────────────────────────────────────────" << endl;
 }
 
-Client* clientHandler::ClientInforeturn(string& phoneNumber)
+Client* ClientHandler::ClientInforeturn(string& phoneNumber)
 {
     Client* c = nullptr;
     auto it = find_if(ClientInfo.begin(), ClientInfo.end(), [=](Client* c)

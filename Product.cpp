@@ -1,8 +1,9 @@
 #include "Product.h"
+#include "ProductHandler.h"
 
-void Product::setProductID(int& ID)
+void Product::setProductID(int& productID)
 {
-	m_productID = ID;
+	m_productID = productID;
 }
 int Product::getProductID() const { return m_productID; }
 
