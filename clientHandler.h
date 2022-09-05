@@ -7,12 +7,16 @@
 class ClientHandler
 {
 public:
+	ClientHandler();
+	~ClientHandler();
 	void ClientEnroll();
-	void ClientSearch(string&);
+	void ClientSearch();
 	void ClientShowlist();
 	void ClientRemove();
 	void ClientEdit();
 	Client* ClientInforeturn(string&);
+	bool HasCID(string key);
+	vector<string> parseCCSV(istream&, char delimiter);
 
 private:
 	vector<Client*> ClientInfo;

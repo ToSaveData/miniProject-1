@@ -8,13 +8,17 @@
 class ProductHandler
 {
 public:
+	ProductHandler();
+	~ProductHandler();
 	void productEnroll();
-	void productSearch(int&);
+	void productSearch();
 	void productShowlist();
 	void productRemove();
 	void productEdit();
 	Product* ProductInfoReturn(int&);
 	int makeProductID();
+	bool HasPID(int&);
+	vector<string> parsePCSV(istream&, char);
 
 private:
 	vector<Product*> ProductInfo;

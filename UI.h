@@ -16,7 +16,7 @@ void start()
 	cout << "*                      상품 관리 프로그램" << "                      *" << endl;
 	cout << "*                      1. 고객 정보 관리" << "                       *" << endl;
 	cout << "*                      2. 상품 정보 관리" << "                       *" << endl;
-	cout << "*                      3. 쇼핑 정보 관리" << "                       *" << endl;
+	cout << "*                      3. 주문 정보 관리" << "                       *" << endl;
 	cout << "****************************************************************" << endl;
 	cout << endl;
 }
@@ -25,7 +25,6 @@ void firstQuestion(int &n)
 {
 	do 
 	{
-		
 		cout << "번호를 입력하세요." << endl;
 		cin >> n;
 		if (cin.fail())
@@ -46,120 +45,129 @@ void firstQuestion(int &n)
 void ClientQ(ClientHandler& CH)
 {
 	int m = 0;
+	int flag = 0;
 	string s="";	
 	
 	cout << "───────────────────────────────────────────────────────────────" << endl;
-	cout << "1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 " << endl;
-	cout << "4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
+	cout << "1. 고객 정보 등록 / 2. 고객 목록 조회 / 3. 고객 정보 검색 " << endl;
+	cout << "4. 고객 정보 삭제 / 5. 고객 정보 변경" << endl;
 	cout << "───────────────────────────────────────────────────────────────" << endl;
-	cin >> m;
-	
-	switch (m)
+	do{
+		cin >> m;
+	if (m < 1 || m>5)
+		cout << "잘못된 번호입니다. 다시 입력하세요." << endl;
+	else
 	{
-	case 0:
-	{}
-	case 1: 
+		flag = 1;
+		switch (m)
 		{
-		CH.ClientEnroll();
-		}break;
-	case 2:
-		{
-		CH.ClientShowlist();
-		}break;
-	case 3:
-		{
-		cout << "찾는 사람의 전화번호를 입력하세요(010-xxxx-xxxx). ";
-		cin >> s;
-		CH.ClientSearch(s);
-		}break;
-	case 4:
-		{
-		CH.ClientRemove();
-		}break;
-	case 5:
-		{
-		CH.ClientEdit();
-		}break;
+		case 1: 
+			{
+			CH.ClientEnroll();
+			}break;
+		case 2:
+			{
+			CH.ClientShowlist();
+			}break;
+		case 3:
+			{
+			CH.ClientSearch();
+			}break;
+		case 4:
+			{
+			CH.ClientRemove();
+			}break;
+		case 5:
+			{
+			CH.ClientEdit();
+			}break;
+		}
 	}
+	} while (flag == 0);
 }
 
 void ProductQ(ProductHandler& PH)
 {
-	int x = 0,m = 0;
+	int x = 0,m = 0, flag = 0;
 	string s = "";
 	cout << "───────────────────────────────────────────────────────────────" << endl;
 	cout << "1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 " << endl;
 	cout << "4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
 	cout << "───────────────────────────────────────────────────────────────" << endl;
-	cin >> m;
-
-	switch (m)
-	{
-	case 1:
+	do{
+		cin >> m;
+	if(m < 1 || m > 5)
+		cout << "잘못된 번호입니다. 다시 입력하세요." << endl;
+	else{
+		flag = 1;
+		switch (m)
 		{
-			PH.productEnroll();
-		}break;
-	case 2:
-		{
-			PH.productShowlist();
-		}break;
-	case 3:
-		{
-			cout << "찾는 제품의 ID를 입력하세요. ";
-			cin >> x;
-			PH.productSearch(x);
-		}break;
-	case 4:
-		{
-			PH.productRemove();
-		}break;
-	case 5:
-		{
-			PH.productEdit();
-		}break;
+		case 1:
+			{
+				PH.productEnroll();
+			}break;
+		case 2:
+			{
+				PH.productShowlist();
+			}break;
+		case 3:
+			{
+				PH.productSearch();
+			}break;
+		case 4:
+			{
+				PH.productRemove();
+			}break;
+		case 5:
+			{
+				PH.productEdit();
+			}break;
+		}
 	}
+	} while (flag == 0);
 }
 
 void OrderInfoQ(ClientHandler& CH, ProductHandler& PH, OrderInfoHandler& OH1)
 {
-	int x = 0, m = 0;
+	int x = 0, m = 0, flag = 0;
 	string s = "";
 
 	cout << "───────────────────────────────────────────────────────────────" << endl;
-	cout << "1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 " << endl;
-	cout << "4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
+	cout << "1. 주문 정보 등록 / 2. 주문 목록 조회 / 3. 주문 정보 검색 " << endl;
+	cout << "4. 주문 정보 삭제 / 5. 주문 정보 변경" << endl;
 	cout << "───────────────────────────────────────────────────────────────" << endl;
-	cin >> m;
-
-	switch (m)
-	{
-	case 1:
-	{
-		OH1.OrderInfoEnroll();
-	}break;
-	case 2:
-	{
-		OH1.OrderInfoShowlist(PH);
-	}break;
-	case 3:
-	{
-		cout << "찾는 제품의 ID를 입력하세요. ";
-		cin >> s;
-		OH1.OrderInfoSearchShow(s, CH, PH);
-	}break;
-	case 4:
-	{
-		OH1.OrderInfoRemove();
-	}break;
-	case 5:
-	{
-		OH1.OrderInfoEdit();
-	}break;
-	}
+	do {
+		cin >> m;
+		if (m < 1 || m > 5)
+			cout << "잘못된 번호입니다. 다시 입력하세요." << endl;
+		else {
+			flag = 1;
+			switch (m)
+			{
+			case 1:
+			{
+				OH1.OrderInfoEnroll();
+			}break;
+			case 2:
+			{
+				OH1.OrderInfoShowlist(CH, PH);
+			}break;
+			case 3:
+			{
+				OH1.OrderInfoSearchShow(CH, PH);
+			}break;
+			case 4:
+			{
+				OH1.OrderInfoRemove(CH, PH);
+			}break;
+			case 5:
+			{
+				OH1.OrderInfoEdit(CH, PH);
+			}break;
+			}
+		}
+	} while (flag == 0);
 }
-
-
-//cout << "3) 1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 / 4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
 
 #endif // !_UI_H_
 

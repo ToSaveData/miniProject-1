@@ -10,12 +10,12 @@ using namespace std;
 class OrderInfo
 {
 public:
-	OrderInfo(string orderCode = "", int orderDate = 00000000, int orderNumber = 0,	string cid = "", 
+	OrderInfo(int orderCode = 0, int orderDate = 00000000, int orderNumber = 0,	string cid = "", 
 		int pid = 0): m_orderCode(orderCode), m_orderDate(orderDate), m_orderNumber(orderNumber), 
 		m_CID(cid), m_PID(pid) {}
 	
-	void setOrderCode(string&);
-	string getOrderCode();
+	void setOrderCode(int&);
+	int getOrderCode();
 	void setOrderDate(int&);
 	int getOrderDate();
 	void setOrderNumber(int&);
@@ -24,10 +24,9 @@ public:
 	string getCID();
 	void setPID(int&);
 	int getPID();
-	bool operator==(string ordercode) const;
 
 private:
-	string m_orderCode; //PK
+	int m_orderCode; //PK
 	int m_orderDate;
 	int m_orderNumber;
 	string m_CID; //Client PK

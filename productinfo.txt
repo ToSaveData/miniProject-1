@@ -1,0 +1,5 @@
+1000, T1, 550000, CT
+1001, T2, 600000, CT
+1002, N1, 1000000, portable_X-ray
+1003, SNAP, 250000, dental_camera
+1004, scanner, 150000, scanner

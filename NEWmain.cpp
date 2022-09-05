@@ -16,10 +16,11 @@ int main()
 	ProductHandler PH;
 	OrderInfoHandler OH(CH, PH);
 	
-TO:	do {
+	do {
 		start();
+TO:
 		try{
-			int n = 0;
+		int n = 0;
 			firstQuestion(n);
 
 			switch (n)
@@ -44,11 +45,11 @@ TO:	do {
 		}
 		cout << "───────────────────────────────────────────────────────────────" << endl;
 		cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
-		cin >> n;
+		cin >> s;
 		system("cls");
-	} while (!(n==-1));
+	} while (!(s == "-1"));
 	
-	if (!(n == -1))
+	if (!(s == "-1"))
 		goto TO;
 
 	return 0;

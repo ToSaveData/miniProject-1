@@ -30,7 +30,7 @@ void Client::setEmailAddress(string& emailAddress)
 	m_emailAddress = emailAddress;
 }
 
-bool Client::operator==(string phoneNumber) const
+bool Client::operator==(string phoneNumber) const // ==연산자 오버로딩, 문자열 형식의 전화번호를 비교하여 일치하는 값을 도출하도록 하기 위함
 {
 	return (this->m_phoneNumber == phoneNumber);
 }

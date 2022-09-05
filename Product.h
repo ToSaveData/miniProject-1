@@ -17,8 +17,6 @@ public:
 	int getProductPrice() const;
 	void setProductSort(string&);
 	string getProductSort() const;
-	bool operator==(int productID) const;
-
 
 private:
 	int m_productID; //PK

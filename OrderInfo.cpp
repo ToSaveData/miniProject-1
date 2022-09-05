@@ -1,11 +1,11 @@
 #include "OrderInfo.h"
 
 
-void OrderInfo::setOrderCode(string& ordercode)
+void OrderInfo::setOrderCode(int& ordercode)
 {
 	m_orderCode = ordercode;
 }
-string OrderInfo::getOrderCode() { return m_orderCode; }
+int OrderInfo::getOrderCode() { return m_orderCode; }
 
 void OrderInfo::setOrderDate(int& orderdate)
 {
@@ -31,7 +31,3 @@ void OrderInfo::setPID(int& productID)
 }
 int OrderInfo::getPID() { return m_PID; }
 
-bool OrderInfo::operator==(string ordercode) const
-{
-	return (this->m_orderCode == ordercode);
-}

@@ -10,19 +10,20 @@
 class OrderInfoHandler
 {
 public:
-	OrderInfoHandler(ClientHandler& CH, ProductHandler& PH) :
-		CInfo(CH), PInfo(PH) {}
+	OrderInfoHandler(ClientHandler& CH, ProductHandler& PH);
+	~OrderInfoHandler();
 	void OrderInfoEnroll();
-	void OrderInfoSearchShow(string&, ClientHandler&, ProductHandler&);
-	void OrderInfoShowlist(ProductHandler&);
-	void OrderInfoRemove();
-	void OrderInfoEdit();
+	void OrderInfoSearchShow(ClientHandler&, ProductHandler&);
+	void OrderInfoShowlist(ClientHandler&, ProductHandler&);
+	void OrderInfoRemove(ClientHandler&, ProductHandler&);
+	void OrderInfoEdit(ClientHandler&, ProductHandler&);
 	string getCName(string, ClientHandler&);
 	string getCAddress(string, ClientHandler&);
 	string getPName(int, ProductHandler&);
 	int getPPrice(int, ProductHandler&);
+	int MakeOrderCode();
+	vector<string> parseOCSV(istream& file, char delimiter);
 	
-
 private:
 	vector<OrderInfo*> OrderInfoInfo;
 	ClientHandler &CInfo;
