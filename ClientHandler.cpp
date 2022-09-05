@@ -64,12 +64,17 @@ void ClientHandler::ClientEnroll()// 성명, 생년월일, 전화번호, 주소, 이메일 주소
     CInfo1->setEmailAddress(s);
     s.clear();
     ClientInfo.push_back(CInfo1);
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 
 void ClientHandler::ClientSearch() // 모든 고객 정보 중 전화번호(PK)가 일치하는 항목의 고객정보 출력
 {
-    string phoneNumber;
+    string phoneNumber, s;
     cout << "찾으시는 고객의 전화번호를 입력하세요(010-xxxx-xxxx). ";
     cin >> phoneNumber;
 
@@ -85,11 +90,17 @@ void ClientHandler::ClientSearch() // 모든 고객 정보 중 전화번호(PK)가 일치하는 
     }
     else
         cout << "일치하는 데이터가 없습니다." << endl;
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 void ClientHandler::ClientShowlist() // 등록된 모든 고객 정보 출력
 {
     int cnt = 0;
+    string s;
     if (ClientInfo.empty() == false)
     {
         for (auto C : ClientInfo)
@@ -109,6 +120,7 @@ void ClientHandler::ClientShowlist() // 등록된 모든 고객 정보 출력
 void ClientHandler::ClientRemove() //특정 고객정보(행)을 제거
 {
     int n;
+    string s;
     if (ClientInfo.empty() == false)
     {
         ClientShowlist();
@@ -141,6 +153,11 @@ void ClientHandler::ClientRemove() //특정 고객정보(행)을 제거
     }
     else
         cout << "등록된 데이터가 없습니다." << endl;
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 void ClientHandler::ClientEdit() // 특정 고객정보(행)의 특정 항목(열) 값을 변경
@@ -199,7 +216,8 @@ CTO2:   cout << "변경할 데이터 열을 입력하세요.";
         } while (m > 4 || m < 0);
         cout << "───────────────────────────────────────────────────────────────" << endl;
         cout << "변경할 데이터 내용을 입력하세요.";
-        cin >> s;
+        cin.ignore();
+        getline(cin, s, '\n');
         switch (m)
         {
         case 0:
@@ -234,6 +252,11 @@ CTO2:   cout << "변경할 데이터 열을 입력하세요.";
     }
     else
         cout << "등록된 데이터가 없습니다." << endl;
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 Client* ClientHandler::ClientInforeturn(string& phoneNumber) // 고객정보의 PK와 일치하는 객체 반환(OrderInfoHandler에서 활용)

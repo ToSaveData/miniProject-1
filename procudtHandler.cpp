@@ -78,11 +78,17 @@ PTO1:
     PInfo1->setProductSort(s);
     s.clear();
     ProductInfo.push_back(PInfo1);
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 void ProductHandler::productSearch() //배열에 저장된 정보를 검색해서 일치하는 정보 한 줄 출력
 {
     int productID;
+    string s;
 PTO2:    
     cout << "찾으시는 제품의 ID를 입력하세요. ";
     cin >> productID;
@@ -101,6 +107,11 @@ PTO2:
             cout << "───────────────────────────────────────────────────────────────" << endl;
             goto PTO2;
         }
+
+        cout << "───────────────────────────────────────────────────────────────" << endl;
+        cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+        cin >> s;
+        system("cls");
     }
 
     auto it = find_if(ProductInfo.begin(), ProductInfo.end(), [=](Product* p)
@@ -139,6 +150,7 @@ void ProductHandler::productShowlist() //입력된 모든 제품 정보 출력
 void ProductHandler::productRemove() // 입력된 정보 중 한 행 제거
 {
     int n;
+    string s;
     if (ProductInfo.empty() == false)
     {
         productShowlist();
@@ -172,6 +184,11 @@ PTO3:   cout << "삭제할 데이터 행을 입력하세요.";
     }
     else
         cout << "등록된 데이터가 없습니다." << endl;
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 void ProductHandler::productEdit() // 입력된 정보 중 특정 행의 특정 열 데이터 변경
@@ -257,6 +274,11 @@ PTO5:   cout << "1: 제품명 / 2: 제품 가격 / 3: 제품 종류" << endl;
     }
     else
         cout << "등록된 데이터가 없습니다." << endl;
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 Product* ProductHandler::ProductInfoReturn(int& productID) // 제품정보의 PK와 일치하는 객체 반환을 위한 함수(OrderInfoHandler에서 활용)

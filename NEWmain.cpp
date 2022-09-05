@@ -17,8 +17,10 @@ int main()
 	OrderInfoHandler OH(CH, PH);
 	
 	do {
+	END:
 		start();
-TO:
+	TO:
+	
 		try{
 		int n = 0;
 			firstQuestion(n);
@@ -27,6 +29,7 @@ TO:
 			{
 			case 1: {
 				ClientQ(CH);
+				//goto END;
 				}break;
 			case 2: {
 				ProductQ(PH);
@@ -43,10 +46,8 @@ TO:
 			cout << "───────────────────────────────────────────────────────────────" << endl;
 			break;
 		}
-		cout << "───────────────────────────────────────────────────────────────" << endl;
-		cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
-		cin >> s;
-		system("cls");
+
+
 	} while (!(s == "-1"));
 	
 	if (!(s == "-1"))

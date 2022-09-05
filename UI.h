@@ -48,41 +48,46 @@ void ClientQ(ClientHandler& CH)
 	int flag = 0;
 	string s="";	
 	
-	cout << "───────────────────────────────────────────────────────────────" << endl;
-	cout << "1. 고객 정보 등록 / 2. 고객 목록 조회 / 3. 고객 정보 검색 " << endl;
-	cout << "4. 고객 정보 삭제 / 5. 고객 정보 변경" << endl;
-	cout << "───────────────────────────────────────────────────────────────" << endl;
-	do{
+	do {
+		cout << "───────────────────────────────────────────────────────────────" << endl;
+		cout << "1. 고객 정보 등록 / 2. 고객 목록 조회 / 3. 고객 정보 검색 " << endl;
+		cout << "4. 고객 정보 삭제 / 5. 고객 정보 변경 / 6. 뒤로 가기" << endl;
+		cout << "───────────────────────────────────────────────────────────────" << endl;
 		cin >> m;
-	if (m < 1 || m>5)
-		cout << "잘못된 번호입니다. 다시 입력하세요." << endl;
-	else
-	{
-		flag = 1;
-		switch (m)
+		if (m < 1 || m > 6)
+			cout << "잘못된 번호입니다. 다시 입력하세요." << endl;
+		else
 		{
-		case 1: 
+			flag = 1;
+			switch (m)
 			{
-			CH.ClientEnroll();
-			}break;
-		case 2:
+			case 1:
 			{
-			CH.ClientShowlist();
+				CH.ClientEnroll();
 			}break;
-		case 3:
+			case 2:
 			{
-			CH.ClientSearch();
+				CH.ClientShowlist();
+				cout << "───────────────────────────────────────────────────────────────" << endl;
+				cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+				cin >> s;
+				system("cls");
 			}break;
-		case 4:
+			case 3:
 			{
-			CH.ClientRemove();
+				CH.ClientSearch();
 			}break;
-		case 5:
+			case 4:
 			{
-			CH.ClientEdit();
+				CH.ClientRemove();
 			}break;
+			case 5:
+			{
+				CH.ClientEdit();
+			}break;
+			case 6:		return;//break;
+			}
 		}
-	}
 	} while (flag == 0);
 }
 
@@ -92,11 +97,11 @@ void ProductQ(ProductHandler& PH)
 	string s = "";
 	cout << "───────────────────────────────────────────────────────────────" << endl;
 	cout << "1. 제품 정보 등록 / 2. 제품 목록 조회 / 3. 제품 정보 검색 " << endl;
-	cout << "4. 제품 정보 삭제 / 5. 제품 정보 변경" << endl;
+	cout << "4. 제품 정보 삭제 / 5. 제품 정보 변경 / 6. 뒤로 가기" << endl;
 	cout << "───────────────────────────────────────────────────────────────" << endl;
 	do{
 		cin >> m;
-	if(m < 1 || m > 5)
+	if(m < 1 || m > 6)
 		cout << "잘못된 번호입니다. 다시 입력하세요." << endl;
 	else{
 		flag = 1;
@@ -109,6 +114,10 @@ void ProductQ(ProductHandler& PH)
 		case 2:
 			{
 				PH.productShowlist();
+				cout << "───────────────────────────────────────────────────────────────" << endl;
+				cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+				cin >> s;
+				system("cls");
 			}break;
 		case 3:
 			{
@@ -122,6 +131,7 @@ void ProductQ(ProductHandler& PH)
 			{
 				PH.productEdit();
 			}break;
+		case 6:		break;
 		}
 	}
 	} while (flag == 0);
@@ -134,11 +144,11 @@ void OrderInfoQ(ClientHandler& CH, ProductHandler& PH, OrderInfoHandler& OH1)
 
 	cout << "───────────────────────────────────────────────────────────────" << endl;
 	cout << "1. 주문 정보 등록 / 2. 주문 목록 조회 / 3. 주문 정보 검색 " << endl;
-	cout << "4. 주문 정보 삭제 / 5. 주문 정보 변경" << endl;
+	cout << "4. 주문 정보 삭제 / 5. 주문 정보 변경 / 6. 뒤로 가기" << endl;
 	cout << "───────────────────────────────────────────────────────────────" << endl;
 	do {
 		cin >> m;
-		if (m < 1 || m > 5)
+		if (m < 1 || m > 6)
 			cout << "잘못된 번호입니다. 다시 입력하세요." << endl;
 		else {
 			flag = 1;
@@ -151,6 +161,10 @@ void OrderInfoQ(ClientHandler& CH, ProductHandler& PH, OrderInfoHandler& OH1)
 			case 2:
 			{
 				OH1.OrderInfoShowlist(CH, PH);
+				cout << "───────────────────────────────────────────────────────────────" << endl;
+				cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+				cin >> s;
+				system("cls");
 			}break;
 			case 3:
 			{
@@ -164,6 +178,7 @@ void OrderInfoQ(ClientHandler& CH, ProductHandler& PH, OrderInfoHandler& OH1)
 			{
 				OH1.OrderInfoEdit(CH, PH);
 			}break;
+			case 6:		break;
 			}
 		}
 	} while (flag == 0);

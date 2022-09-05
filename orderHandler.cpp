@@ -141,11 +141,17 @@ OTO3:
     } while (1);
     OrderInfoInfo1->setPID(x);
     OrderInfoInfo.push_back(OrderInfoInfo1);
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 void OrderInfoHandler::OrderInfoSearchShow(ClientHandler& CH, ProductHandler &PH) // 모든 주문 정보 중 주문코드(PK)와 일치하는 주문 정보 항목 출력
 {
     int ordercode;
+    string s;
     cout << "찾으시는 주문 코드를 입력하세요. ";
     cin >> ordercode;
 
@@ -162,6 +168,11 @@ void OrderInfoHandler::OrderInfoSearchShow(ClientHandler& CH, ProductHandler &PH
     }
     else
         cout << "일치하는 데이터가 없습니다." << endl;
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 void OrderInfoHandler::OrderInfoShowlist(ClientHandler& CH,ProductHandler& PH) // 등록된 모든 주문 정보 출력
@@ -187,6 +198,7 @@ void OrderInfoHandler::OrderInfoShowlist(ClientHandler& CH,ProductHandler& PH) /
 void OrderInfoHandler::OrderInfoRemove(ClientHandler& CH, ProductHandler& PH) //특정 주문정보(행)을 제거
 {
     int n;
+    string s;
     if (OrderInfoInfo.empty() == false)
     {
         OrderInfoShowlist(CInfo, PInfo);
@@ -220,6 +232,11 @@ OTO4:   cout << "삭제할 데이터 행을 입력하세요.";
     }
     else
         cout << "등록된 데이터가 없습니다." << endl;
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 void OrderInfoHandler::OrderInfoEdit(ClientHandler& CH, ProductHandler& PH) // 특정 주문정보(행)의 특정 항목(열) 값을 변경
@@ -316,6 +333,11 @@ OTO6:   cout << "변경할 데이터 열을 입력하세요.";
     }
     else
         cout << "등록된 데이터가 없습니다." << endl;
+
+    cout << "───────────────────────────────────────────────────────────────" << endl;
+    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
+    cin >> s;
+    system("cls");
 }
 
 string OrderInfoHandler::getCName(string phoneNumber, ClientHandler& CH) // 고객PK를 활용해 고객 성명 추출
