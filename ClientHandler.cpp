@@ -1,11 +1,11 @@
-//각 함수 내의 try, catch구문은 int 형 입력 상황에서 다른 형태의 데이터가 입력됐을 경우를 처리하기 위함임.
-
-extern int getNumber();
-extern int getBnumber();
-#include "ClientHandler.h"
 #include <string>
 #include <fstream>
 #include <sstream>
+#include "ClientHandler.h"
+
+extern int getNumber();
+extern int getBnumber();
+
 ClientHandler::ClientHandler()
 {
     ifstream file; //파일 출력 객체 생성

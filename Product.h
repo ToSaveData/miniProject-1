@@ -1,6 +1,7 @@
 #pragma once
 #ifndef _PRODUCT_H_
 #define _PRODUCT_H_
+
 #include <iostream>
 using namespace std;
 

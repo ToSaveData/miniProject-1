@@ -1,9 +1,9 @@
 #pragma once
 #ifndef _PRODUCTHANDLER_H_
 #define _PRODUCTHANDLER_H_
-#include "Product.h"
-#include <vector>
 
+#include <vector>
+#include "Product.h"
 
 class ProductHandler
 {

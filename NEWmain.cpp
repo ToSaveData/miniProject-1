@@ -1,3 +1,6 @@
+#include <algorithm>
+#include <string>
+#include <conio.h>
 #include "Client.h"
 #include "Product.h"
 #include "OrderInfo.h"
@@ -5,9 +8,6 @@
 #include "ProductHandler.h"
 #include "OrderInfoHandler.h"
 #include "UI.h"
-#include <algorithm>
-#include <string>
-#include <conio.h>
 
 int main()
 {
@@ -74,7 +74,7 @@ int getBnumber()
 	while (1) {
 		do {
 			ch = _getch();
-			if (ch == '\r')
+			if (ch == '\r' || ch == '\n')
 			{
 				cout << endl;
 				goto END;

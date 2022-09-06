@@ -1,8 +1,9 @@
 #pragma once
 #ifndef _CLIENTHANDLER_H_
 #define _CLIENTHANDLER_H_
-#include "Client.h"
+
 #include <vector>
+#include "Client.h"
 
 class ClientHandler
 {
@@ -16,7 +17,7 @@ public:
 	void ClientEdit();
 	Client* ClientInforeturn(string&);
 	bool HasCID(string key);
-	vector<string> parseCCSV(istream&, char delimiter);
+	vector<string> parseCCSV(istream&, char);
 
 private:
 	vector<Client*> ClientInfo;

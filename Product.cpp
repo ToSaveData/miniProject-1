@@ -1,5 +1,4 @@
 #include "Product.h"
-#include "ProductHandler.h"
 
 void Product::setProductID(int& productID)
 {

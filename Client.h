@@ -22,7 +22,6 @@ public:
 	void setEmailAddress(string&);
 	bool operator==(string phoneNumber) const;
 
-
 private:
 	string m_name;
 	string m_birthday;

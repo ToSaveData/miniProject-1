@@ -1,6 +1,5 @@
 #include "OrderInfo.h"
 
-
 void OrderInfo::setOrderCode(int& ordercode)
 {
 	m_orderCode = ordercode;

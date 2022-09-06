@@ -1,11 +1,11 @@
 #pragma once
 #ifndef _ORDERINFOHANDLER_H_
 #define _ORDERINFOHANDLER_H_
+
+#include <vector>
 #include "OrderInfo.h"
 #include "ClientHandler.h"
 #include "ProductHandler.h"
-#include <vector>
-
 
 class OrderInfoHandler
 {

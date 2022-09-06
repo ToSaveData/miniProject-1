@@ -1,12 +1,10 @@
-//각 함수 내의 try, catch구문은 int 형 입력 상황에서 다른 형태의 데이터가 입력됐을 경우를 처리하기 위함임.
-//goto구문은 throw이후 재입력을 받기 위한 지점으로 돌려줌.
-
-extern int getNumber();
-extern int getBnumber();
-#include "OrderInfoHandler.h"
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include "OrderInfoHandler.h"
+
+extern int getNumber();
+extern int getBnumber();
 using namespace std;
 
 OrderInfoHandler::OrderInfoHandler(ClientHandler& CH, ProductHandler& PH) : CInfo(CH), PInfo(PH) 
@@ -190,7 +188,7 @@ void OrderInfoHandler::OrderInfoEdit(ClientHandler& CH, ProductHandler& PH) // �
         } while (n >= OrderInfoInfo.size() || n < 0);
 
         cout << "──────────────────────────────────────────────────────────" << endl;
-OTO6:   cout << "변경할 데이터 열을 입력하세요.";
+        cout << "변경할 데이터 열을 입력하세요.";
         cout << "1: 주문 일자 / 2: 주문 수량" << endl;
         do {
             m = getNumber();

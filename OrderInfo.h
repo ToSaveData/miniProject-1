@@ -2,9 +2,10 @@
 #ifndef _ORDERINFO_H_
 #define _ORDERINFO_H_
 
+#include <iostream>
 #include "Client.h"
 #include "Product.h"
-#include <iostream>
+
 using namespace std;
 
 class OrderInfo

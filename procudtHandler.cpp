@@ -1,10 +1,9 @@
-//각 함수 내의 try, catch구문은 int 형 입력 상황에서 다른 형태의 데이터가 입력됐을 경우를 처리하기 위함임.
+#include <sstream>
+#include <fstream>
+#include "ProductHandler.h"
 
 extern int getNumber();
 extern int getBnumber();
-#include "ProductHandler.h"
-#include <sstream>
-#include <fstream>
 
 ProductHandler::ProductHandler()
 {
@@ -75,7 +74,7 @@ void ProductHandler::productSearch() //배열에 저장된 정보를 검색해서 일치하는 정
     int n, productID;
     string s; 
     cout << "찾으시는 제품의 ID를 입력하세요. ";
-    productID = getBnumber();
+    productID = getBnumber(); // cin >> productid;
     auto it = find_if(ProductInfo.begin(), ProductInfo.end(), [=](Product* p)
         { return (*p).getProductID() == productID; });
 

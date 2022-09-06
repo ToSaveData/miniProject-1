@@ -1,15 +1,16 @@
 #ifndef _UI_H_
 #define _UI_H_
 
-extern int getNumber();
+#include <iostream>
 #include "OrderInfoHandler.h"
 #include "ClientHandler.h"
 #include "ProductHandler.h"
 #include "Client.h"
 #include "Product.h"
 #include "OrderInfo.h"
-#include <iostream>
+
 using namespace std;
+extern int getNumber();
 
 void start()
 {
