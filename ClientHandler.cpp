@@ -1,5 +1,7 @@
 //°¢ ÇÔ¼ö ³»ÀÇ try, catch±¸¹®Àº int Çü ÀÔ·Â »óÈ²¿¡¼­ ´Ù¸¥ ÇüÅÂÀÇ µ¥ÀÌÅÍ°¡ ÀÔ·ÂµÆÀ» °æ¿ì¸¦ Ã³¸®ÇÏ±â À§ÇÔÀÓ.
 
+extern int getNumber();
+extern int getBnumber();
 #include "ClientHandler.h"
 #include <string>
 #include <fstream>
@@ -20,6 +22,7 @@ ClientHandler::ClientHandler()
             }
         }
     }
+    cout << "clientinfo.txt Ãâ·Â ¿Ï·á" << endl;
 }
 
 ClientHandler::~ClientHandler()
@@ -41,6 +44,7 @@ ClientHandler::~ClientHandler()
 void ClientHandler::ClientEnroll()// ¼º¸í, »ý³â¿ùÀÏ, ÀüÈ­¹øÈ£, ÁÖ¼Ò, ÀÌ¸ÞÀÏ ÁÖ¼Ò ÀÔ·Â ÈÄ Á¤º¸ ÀúÀå
 {
     string s;
+    int n;
     cout << "ÀÌ¸§: ";
     cin >> s;
     Client* CInfo1 = new Client;
@@ -66,14 +70,15 @@ void ClientHandler::ClientEnroll()// ¼º¸í, »ý³â¿ùÀÏ, ÀüÈ­¹øÈ£, ÁÖ¼Ò, ÀÌ¸ÞÀÏ ÁÖ¼Ò
     ClientInfo.push_back(CInfo1);
 
     cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-    cout << "°è¼Ó ÇÏ½Ã·Á¸é ¾Æ¹« °ªÀÌ³ª ÀÔ·ÂÇÏ¼¼¿ä(Á¾·á: -1).";
-    cin >> s;
+    cout << "°è¼Ó ÇÏ½Ã·Á¸é ¾Æ¹« ¼ýÀÚ°ªÀÌ³ª ÀÔ·ÂÇÏ¼¼¿ä.";
+    n = getNumber();
     system("cls");
 }
 
 
 void ClientHandler::ClientSearch() // ¸ðµç °í°´ Á¤º¸ Áß ÀüÈ­¹øÈ£(PK)°¡ ÀÏÄ¡ÇÏ´Â Ç×¸ñÀÇ °í°´Á¤º¸ Ãâ·Â
 {
+    int n;
     string phoneNumber, s;
     cout << "Ã£À¸½Ã´Â °í°´ÀÇ ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä(010-xxxx-xxxx). ";
     cin >> phoneNumber;
@@ -92,8 +97,8 @@ void ClientHandler::ClientSearch() // ¸ðµç °í°´ Á¤º¸ Áß ÀüÈ­¹øÈ£(PK)°¡ ÀÏÄ¡ÇÏ´Â 
         cout << "ÀÏÄ¡ÇÏ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù." << endl;
 
     cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-    cout << "°è¼Ó ÇÏ½Ã·Á¸é ¾Æ¹« °ªÀÌ³ª ÀÔ·ÂÇÏ¼¼¿ä(Á¾·á: -1).";
-    cin >> s;
+    cout << "°è¼Ó ÇÏ½Ã·Á¸é ¾Æ¹« ¼ýÀÚ°ªÀÌ³ª ÀÔ·ÂÇÏ¼¼¿ä.";
+    n = getNumber();
     system("cls");
 }
 
@@ -125,38 +130,21 @@ void ClientHandler::ClientRemove() //Æ¯Á¤ °í°´Á¤º¸(Çà)À» Á¦°Å
     {
         ClientShowlist();
         cout << "»èÁ¦ÇÏ½Ç µ¥ÀÌÅÍ Çà ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.";
-        cin >> n;
-        if (cin.fail())
+        n = getBnumber();
+        if (n >= ClientInfo.size() || n < 0)
+            cout << "ÀÔ·ÂµÈ Çà¿¡ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù." << endl;
+        else
         {
-            try 
-            {
-                cin.clear();
-                cin.ignore(100, '\n');
-                throw 100;
-            }
-            catch (...)
-            {
-                cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-                cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù." << endl;
-                cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-            }
-        }
-        else{
-            if (n >= ClientInfo.size() || n < 0)
-                cout << "ÀÔ·ÂµÈ Çà¿¡ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù." << endl;
-            else
-            {
-                ClientInfo.erase(ClientInfo.begin() + n);
-                cout << "»èÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù." << endl;
-            }
+            ClientInfo.erase(ClientInfo.begin() + n);
+            cout << "»èÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù." << endl;
         }
     }
     else
         cout << "µî·ÏµÈ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù." << endl;
 
     cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-    cout << "°è¼Ó ÇÏ½Ã·Á¸é ¾Æ¹« °ªÀÌ³ª ÀÔ·ÂÇÏ¼¼¿ä(Á¾·á: -1).";
-    cin >> s;
+    cout << "°è¼Ó ÇÏ½Ã·Á¸é ¾Æ¹« ¼ýÀÚ°ªÀÌ³ª ÀÔ·ÂÇÏ¼¼¿ä.";
+    n = getNumber();
     system("cls");
 }
 
@@ -168,80 +156,53 @@ void ClientHandler::ClientEdit() // Æ¯Á¤ °í°´Á¤º¸(Çà)ÀÇ Æ¯Á¤ Ç×¸ñ(¿­) °ªÀ» º¯°æ
     {
         ClientShowlist();
         cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-CTO1:   cout << "º¯°æÇÒ µ¥ÀÌÅÍ ÇàÀ» ÀÔ·ÂÇÏ¼¼¿ä.";
+        cout << "º¯°æÇÒ µ¥ÀÌÅÍ ÇàÀ» ÀÔ·ÂÇÏ¼¼¿ä.";
         do {
-            cin >> n;
-            if (cin.fail())
-            {
-                try
-                {
-                    cin.clear();
-                    cin.ignore(100, '\n');
-                    throw 100;
-                }
-                catch (...)
-                {
-                    cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-                    cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù." << endl;
-                    cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-                    goto CTO1;
-                }
-            }
+            n = getBnumber();
             if (n >= ClientInfo.size() || n < 0)
                 cout << "ÀÔ·ÂµÈ Çà¿¡ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä" << endl;
         } while (n >= ClientInfo.size() || n < 0);
         cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
         cout << "0: ÀÌ¸§ / 1: »ý³â¿ùÀÏ / 2: ÀüÈ­¹øÈ£ /" << endl << " 3: ÁÖ¼Ò / 4: ÀÌ¸ÞÀÏ ÁÖ¼Ò" << endl;
-CTO2:   cout << "º¯°æÇÒ µ¥ÀÌÅÍ ¿­À» ÀÔ·ÂÇÏ¼¼¿ä.";
+        cout << "º¯°æÇÒ µ¥ÀÌÅÍ ¿­À» ÀÔ·ÂÇÏ¼¼¿ä.";
         do {
-            cin >> m;
-            if (cin.fail())
-            {
-                try
-                {
-                    cin.clear();
-                    cin.ignore(100, '\n');
-                    throw 100;
-                }
-                catch (...)
-                {
-                    cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-                    cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù." << endl;
-                    cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-                    goto CTO2;
-                }
-            }
+            m = getNumber();
             if (m > 4 || m < 0)
                 cout << "ÀÔ·ÂµÈ ¿­¿¡ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä" << endl;
         } while (m > 4 || m < 0);
-        cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
+        cout << "\n¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
         cout << "º¯°æÇÒ µ¥ÀÌÅÍ ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.";
-        cin.ignore();
-        getline(cin, s, '\n');
+       
         switch (m)
         {
         case 0:
         {
+            cin >> s;
             ClientInfo[n]->setName(s);
             s.clear();
         }break;
         case 1:
         {
+            cin >> s;
             ClientInfo[n]->setBirthday(s);
             s.clear();
         }break;
         case 2:
         {
+            cin >> s;
             ClientInfo[n]->setPhoneNumber(s);
             s.clear();
         }break;
         case 3:
         {
+            cin.ignore();
+            getline(cin, s, '\n');
             ClientInfo[n]->setAddress(s);
             s.clear();
         }break;
         case 4:
         {
+            cin >> s;
             ClientInfo[n]->setEmailAddress(s);
             s.clear();
         }break;
@@ -254,8 +215,8 @@ CTO2:   cout << "º¯°æÇÒ µ¥ÀÌÅÍ ¿­À» ÀÔ·ÂÇÏ¼¼¿ä.";
         cout << "µî·ÏµÈ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù." << endl;
 
     cout << "¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡" << endl;
-    cout << "°è¼Ó ÇÏ½Ã·Á¸é ¾Æ¹« °ªÀÌ³ª ÀÔ·ÂÇÏ¼¼¿ä(Á¾·á: -1).";
-    cin >> s;
+    cout << "°è¼Ó ÇÏ½Ã·Á¸é ¾Æ¹« ¼ýÀÚ°ªÀÌ³ª ÀÔ·ÂÇÏ¼¼¿ä.";
+    n = getNumber();
     system("cls");
 }
 

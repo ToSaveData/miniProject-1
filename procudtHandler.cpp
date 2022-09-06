@@ -1,7 +1,8 @@
 //陝 л熱 頂曖 try, catch掘僥擎 int ⑽ 殮溘 鼻�窒□� 棻艇 ⑽鷓曖 等檜攪陛 殮溘腑擊 唳辦蒂 籀葬ж晦 嬪л歜.
 
+extern int getNumber();
+extern int getBnumber();
 #include "ProductHandler.h"
-using namespace std;
 #include <sstream>
 #include <fstream>
 
@@ -23,6 +24,7 @@ ProductHandler::ProductHandler()
             }
         }
     }
+    cout << "productinfo.txt 轎溘 諫猿" << endl;
 }
 
 ProductHandler::~ProductHandler()
@@ -52,26 +54,9 @@ void ProductHandler::productEnroll() // 薯ヶID(PK)朝 濠翕儅撩, 薯ヶ貲, 薯ヶ陛問,
     cout << "薯ヶ貲: ";
     cin >> s;
     PInfo1->setProductName(s);
-    s.clear();
-PTO1:    
+    s.clear();  
     cout << "薯ヶ 陛問: ";
-    cin >> x;
-    if (cin.fail())
-    {
-        try
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            throw 100;
-        }
-        catch (...)
-        {
-            cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-            cout << "澀跤脹 殮溘殮棲棻." << endl;
-            cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-            goto PTO1;
-        }
-    }
+    x = getBnumber();
     PInfo1->setProductPrice(x);
     cout << "薯ヶ 謙盟: ";
     cin >> s;
@@ -80,40 +65,17 @@ PTO1:
     ProductInfo.push_back(PInfo1);
 
     cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-    cout << "啗樓 ж衛溥賊 嬴鼠 高檜釭 殮溘ж撮蹂(謙猿: -1).";
-    cin >> s;
+    cout << "啗樓 ж衛溥賊 嬴鼠 璋濠高檜釭 殮溘ж撮蹂.";
+    x = getNumber();
     system("cls");
 }
 
 void ProductHandler::productSearch() //寡翮縑 盪濰脹 薑爾蒂 匐儀п憮 橾纂ж朝 薑爾 и 還 轎溘
 {
-    int productID;
-    string s;
-PTO2:    
+    int n, productID;
+    string s; 
     cout << "瓊戲衛朝 薯ヶ曖 ID蒂 殮溘ж撮蹂. ";
-    cin >> productID;
-    if (cin.fail())
-    {
-        try
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            throw 100;
-        }
-        catch (...)
-        {
-            cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-            cout << "澀跤脹 殮溘殮棲棻." << endl;
-            cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-            goto PTO2;
-        }
-
-        cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-        cout << "啗樓 ж衛溥賊 嬴鼠 高檜釭 殮溘ж撮蹂(謙猿: -1).";
-        cin >> s;
-        system("cls");
-    }
-
+    productID = getBnumber();
     auto it = find_if(ProductInfo.begin(), ProductInfo.end(), [=](Product* p)
         { return (*p).getProductID() == productID; });
 
@@ -126,6 +88,11 @@ PTO2:
     }
     else
         cout << "橾纂ж朝 等檜攪陛 橈蝗棲棻." << endl;
+
+    cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
+    cout << "啗樓 ж衛溥賊 嬴鼠 璋濠高檜釭 殮溘ж撮蹂.";
+    n = getNumber();
+    system("cls");
 }
 
 void ProductHandler::productShowlist() //殮溘脹 賅萇 薯ヶ 薑爾 轎溘
@@ -154,40 +121,23 @@ void ProductHandler::productRemove() // 殮溘脹 薑爾 醞 и ч 薯剪
     if (ProductInfo.empty() == false)
     {
         productShowlist();
-PTO3:   cout << "餉薯й 等檜攪 ч擊 殮溘ж撮蹂.";
-        cin >> n;
-        if (cin.fail())
+        cout << "餉薯й 等檜攪 ч擊 殮溘ж撮蹂.";
+        n = getBnumber();
+        
+        if (n >= ProductInfo.size() || n < 0)
+            cout << "殮溘脹 ч縑 等檜攪陛 橈蝗棲棻." << endl;
+        else
         {
-            try
-            {
-                cin.clear();
-                cin.ignore(100, '\n');
-                throw 100;
-            }
-            catch (...)
-            {
-                cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-                cout << "澀跤脹 殮溘殮棲棻." << endl;
-                cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-                goto PTO3;
-            }
-        }
-        else{
-            if (n >= ProductInfo.size() || n < 0)
-                cout << "殮溘脹 ч縑 等檜攪陛 橈蝗棲棻." << endl;
-            else
-            {
-                ProductInfo.erase(ProductInfo.begin() + n);
-                cout << "餉薯陛 諫猿腎歷蝗棲棻." << endl;
-            }
+            ProductInfo.erase(ProductInfo.begin() + n);
+            cout << "餉薯陛 諫猿腎歷蝗棲棻." << endl;
         }
     }
     else
         cout << "蛔煙脹 等檜攪陛 橈蝗棲棻." << endl;
 
     cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-    cout << "啗樓 ж衛溥賊 嬴鼠 高檜釭 殮溘ж撮蹂(謙猿: -1).";
-    cin >> s;
+    cout << "啗樓 ж衛溥賊 嬴鼠 璋濠高檜釭 殮溘ж撮蹂.";
+    n = getNumber();
     system("cls");
 }
 
@@ -199,54 +149,22 @@ void ProductHandler::productEdit() // 殮溘脹 薑爾 醞 か薑 ч曖 か薑 翮 等檜攪 滲
     {
         productShowlist();
         cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-PTO4:   cout << "滲唳й 等檜攪 ч擊 殮溘ж撮蹂.";
+        cout << "滲唳й 等檜攪 ч擊 殮溘ж撮蹂.";
         do {
-            cin >> n;
-            if (cin.fail())
-            {
-                try
-                {
-                    cin.clear();
-                    cin.ignore(100, '\n');
-                    throw 100;
-                }
-                catch (...)
-                {
-                    cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-                    cout << "澀跤脹 殮溘殮棲棻." << endl;
-                    cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-                    goto PTO4;
-                }
-            }
+            n = getBnumber();
             if (n >= ProductInfo.size() || n < 0)
                 cout << "殮溘脹 ч縑 等檜攪陛 橈蝗棲棻. 棻衛 殮溘ж撮蹂" << endl;
         } while (n >= ProductInfo.size() || n < 0);
 
         cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-PTO5:   cout << "1: 薯ヶ貲 / 2: 薯ヶ 陛問 / 3: 薯ヶ 謙盟" << endl;
+        cout << "1: 薯ヶ貲 / 2: 薯ヶ 陛問 / 3: 薯ヶ 謙盟" << endl;
         cout << "滲唳й 等檜攪 翮擊 殮溘ж撮蹂.";
         do {
-            cin >> m;
-            if (cin.fail())
-            {
-                try
-                {
-                    cin.clear();
-                    cin.ignore(100, '\n');
-                    throw 100;
-                }
-                catch (...)
-                {
-                    cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-                    cout << "澀跤脹 殮溘殮棲棻." << endl;
-                    cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-                    goto PTO5;
-                }
-            }
+            m = getNumber();
             if (m < 1 || m > 3)
                 cout << "澀跤脹 璋濠殮棲棻. 棻衛 殮溘ж撮蹂" << endl;
         } while (m < 1 || m > 3);
-        cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
+        cout << "\n式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
         cout << "滲唳й 等檜攪 頂辨擊 殮溘ж撮蹂.";
         switch (m)
         {
@@ -258,7 +176,7 @@ PTO5:   cout << "1: 薯ヶ貲 / 2: 薯ヶ 陛問 / 3: 薯ヶ 謙盟" << endl;
         }break;
         case 2:
         {
-            cin >> x;
+            x = getBnumber();
             ProductInfo[n]->setProductPrice(x);
         }break;
         case 3:
@@ -276,8 +194,8 @@ PTO5:   cout << "1: 薯ヶ貲 / 2: 薯ヶ 陛問 / 3: 薯ヶ 謙盟" << endl;
         cout << "蛔煙脹 等檜攪陛 橈蝗棲棻." << endl;
 
     cout << "式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式" << endl;
-    cout << "啗樓 ж衛溥賊 嬴鼠 高檜釭 殮溘ж撮蹂(謙猿: -1).";
-    cin >> s;
+    cout << "啗樓 ж衛溥賊 嬴鼠 璋濠高檜釭 殮溘ж撮蹂.";
+    x = getNumber();
     system("cls");
 }
 

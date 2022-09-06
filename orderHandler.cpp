@@ -1,6 +1,8 @@
 //각 함수 내의 try, catch구문은 int 형 입력 상황에서 다른 형태의 데이터가 입력됐을 경우를 처리하기 위함임.
 //goto구문은 throw이후 재입력을 받기 위한 지점으로 돌려줌.
 
+extern int getNumber();
+extern int getBnumber();
 #include "OrderInfoHandler.h"
 #include <sstream>
 #include <fstream>
@@ -27,6 +29,7 @@ OrderInfoHandler::OrderInfoHandler(ClientHandler& CH, ProductHandler& PH) : CInf
             }
         }
     }
+    cout << "orderinfoinfo.txt 출력 완료" << endl;
 }
 OrderInfoHandler::~OrderInfoHandler()
 {
@@ -53,51 +56,17 @@ void OrderInfoHandler::OrderInfoEnroll() // 주문코드(PK)는 자동생성, 주문일자, �
     
     int orderCode = MakeOrderCode();
     OrderInfoInfo1->setOrderCode(orderCode);
-OTO1:
     cout << "주문일자: ";
-    cin >> x;
-    if (cin.fail())
-    {
-        try
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            throw 100;
-        }
-        catch (...)
-        {
-            cout << "───────────────────────────────────────────────────────────────" << endl;
-            cout << "잘못된 입력입니다." << endl;
-            cout << "───────────────────────────────────────────────────────────────" << endl;
-            goto OTO1;
-        }
-    }
+    x = getBnumber();
     OrderInfoInfo1->setOrderDate(x);
-OTO2:
     cout << "주문수량: ";
-    cin >> x;
-    if (cin.fail())
-    {
-        try
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            throw 100;
-        }
-        catch (...)
-        {
-            cout << "───────────────────────────────────────────────────────────────" << endl;
-            cout << "잘못된 입력입니다." << endl;
-            cout << "───────────────────────────────────────────────────────────────" << endl;
-            goto OTO2;
-        }
-    }
+    x = getBnumber();
     OrderInfoInfo1->setOrderNumber(x);
     
-    cout << "CID(종료: -1): ";
+    cout << "CID(종료: 9): ";
     do {
         cin >> s;
-        if (s == "-1")
+        if (s == "9")
             break;
         else if (CInfo.HasCID(s))
         {
@@ -108,28 +77,11 @@ OTO2:
         else if(!CInfo.HasCID(s))
             cout << "입력하신 CID는 등록되지 않은 CID입니다." << endl;
     } while (1);
-OTO3:
-    cout << "PID(종료: -1): ";
 
+    cout << "PID(종료: 9): ";
     do {
-        cin >> x;
-        if (cin.fail())
-        {
-            try
-            {
-                cin.clear();
-                cin.ignore(100, '\n');
-                throw 100;
-            }
-            catch (...)
-            {
-                cout << "───────────────────────────────────────────────────────────────" << endl;
-                cout << "잘못된 입력입니다." << endl;
-                cout << "───────────────────────────────────────────────────────────────" << endl;
-                goto OTO3;
-            }
-        }
-        if (-1 == x)
+    x = getBnumber();
+        if (9 == x)
             break;
         else if (PInfo.HasPID(x))
         {
@@ -143,17 +95,17 @@ OTO3:
     OrderInfoInfo.push_back(OrderInfoInfo1);
 
     cout << "───────────────────────────────────────────────────────────────" << endl;
-    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
-    cin >> s;
+    cout << "계속 하시려면 아무 숫자값이나 입력하세요.";
+    x = getNumber();
     system("cls");
 }
 
 void OrderInfoHandler::OrderInfoSearchShow(ClientHandler& CH, ProductHandler &PH) // 모든 주문 정보 중 주문코드(PK)와 일치하는 주문 정보 항목 출력
 {
-    int ordercode;
+    int ordercode, n;
     string s;
     cout << "찾으시는 주문 코드를 입력하세요. ";
-    cin >> ordercode;
+    ordercode = getBnumber();
 
     auto it = find_if(OrderInfoInfo.begin(), OrderInfoInfo.end(), [=](OrderInfo* O)
         { return (*O).getOrderCode() == ordercode; });
@@ -170,8 +122,8 @@ void OrderInfoHandler::OrderInfoSearchShow(ClientHandler& CH, ProductHandler &PH
         cout << "일치하는 데이터가 없습니다." << endl;
 
     cout << "───────────────────────────────────────────────────────────────" << endl;
-    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
-    cin >> s;
+    cout << "계속 하시려면 아무 숫자값이나 입력하세요.";
+    n = getNumber();
     system("cls");
 }
 
@@ -202,25 +154,9 @@ void OrderInfoHandler::OrderInfoRemove(ClientHandler& CH, ProductHandler& PH) //
     if (OrderInfoInfo.empty() == false)
     {
         OrderInfoShowlist(CInfo, PInfo);
-OTO4:   cout << "삭제할 데이터 행을 입력하세요.";
-        cin >> n;
-        if (cin.fail())
-        {
-            try
-            {
-                cin.clear();
-                cin.ignore(100, '\n');
-                throw 100;
-            }
-            catch (...)
-            {
-                cout << "───────────────────────────────────────────────────────────────" << endl;
-                cout << "잘못된 입력입니다." << endl;
-                cout << "───────────────────────────────────────────────────────────────" << endl;
-                goto OTO4;
-            }
-        }
-        else{
+       cout << "삭제할 데이터 행을 입력하세요.";
+        n = getBnumber();
+       
         if (n >= OrderInfoInfo.size() || n < 0)
             cout << "입력된 행에 데이터가 없습니다." << endl;
         else
@@ -228,14 +164,13 @@ OTO4:   cout << "삭제할 데이터 행을 입력하세요.";
             OrderInfoInfo.erase(OrderInfoInfo.begin() + n);
             cout << "삭제가 완료되었습니다." << endl;
         }
-        }
     }
     else
         cout << "등록된 데이터가 없습니다." << endl;
 
     cout << "───────────────────────────────────────────────────────────────" << endl;
-    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
-    cin >> s;
+    cout << "계속 하시려면 아무 숫자값이나 입력하세요.";
+    n = getNumber();
     system("cls");
 }
 
@@ -247,26 +182,9 @@ void OrderInfoHandler::OrderInfoEdit(ClientHandler& CH, ProductHandler& PH) // �
     {
         OrderInfoShowlist(CInfo, PInfo);
         cout << "──────────────────────────────────────────────────────────" << endl;
-OTO5:
         cout << "변경할 데이터 행을 입력하세요.";
         do {
-            cin >> n;
-            if (cin.fail())
-            {
-                try
-                {
-                    cin.clear();
-                    cin.ignore(100, '\n');
-                    throw 100;
-                }
-                catch (...)
-                {
-                    cout << "───────────────────────────────────────────────────────────────" << endl;
-                    cout << "잘못된 입력입니다." << endl;
-                    cout << "───────────────────────────────────────────────────────────────" << endl;
-                    goto OTO5;
-                }
-            }
+            n = getBnumber();
             if (n >= OrderInfoInfo.size() || n < 0)
                 cout << "입력된 행에 데이터가 없습니다. 다시 입력하세요" << endl;
         } while (n >= OrderInfoInfo.size() || n < 0);
@@ -275,44 +193,28 @@ OTO5:
 OTO6:   cout << "변경할 데이터 열을 입력하세요.";
         cout << "1: 주문 일자 / 2: 주문 수량" << endl;
         do {
-            cin >> m;
-            if (cin.fail())
-            {
-                try
-                {
-                    cin.clear();
-                    cin.ignore(100, '\n');
-                    throw 100;
-                }
-                catch (...)
-                {
-                    cout << "───────────────────────────────────────────────────────────────" << endl;
-                    cout << "잘못된 입력입니다." << endl;
-                    cout << "───────────────────────────────────────────────────────────────" << endl;
-                    goto OTO6;
-                }
-            }
+            m = getNumber();
             if (m > 2 || m < 1)
                 cout << "잘못된 숫자입니다. 다시 입력하세요." << endl;
         } while (m > 2 || m < 1);
-        cout << "──────────────────────────────────────────────────────────" << endl;
+        cout << "\n──────────────────────────────────────────────────────────" << endl;
         cout << "변경할 데이터 내용을 입력하세요.";
 
         switch (m)
         {
         case 0:
         {
-            cin >> x;
+            x = getBnumber();
             OrderInfoInfo[n]->setOrderCode(x);
         }break;
         case 1:
         {
-            cin >> x;
+            x = getBnumber();
             OrderInfoInfo[n]->setOrderDate(x);
         }break;
         case 2:
         {
-            cin >> x;
+            x = getBnumber();
             OrderInfoInfo[n]->setOrderNumber(x);
         }break;
         case 3:
@@ -323,7 +225,7 @@ OTO6:   cout << "변경할 데이터 열을 입력하세요.";
         }break;
         case 4:
         {
-            cin >> x;
+            x = getBnumber();
             OrderInfoInfo[n]->setPID(x);
         }break;
         }
@@ -335,8 +237,8 @@ OTO6:   cout << "변경할 데이터 열을 입력하세요.";
         cout << "등록된 데이터가 없습니다." << endl;
 
     cout << "───────────────────────────────────────────────────────────────" << endl;
-    cout << "계속 하시려면 아무 값이나 입력하세요(종료: -1).";
-    cin >> s;
+    cout << "계속 하시려면 아무 숫자값이나 입력하세요.";
+    x = getNumber();
     system("cls");
 }
 
